@@ -3,19 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #EEECE8;
+  --foreground: #45381D;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'Bagnard';
+  src: url('/fonts/Bagnard.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-family: 'Bagnard';
 }
