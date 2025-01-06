@@ -4,7 +4,8 @@ import MenuBar from "./components/menuBar";
 
 export const metadata: Metadata = {
   title: "Belle Proffitt Pottery",
-  description: "Website for Belle Proffitt's pottery, including home, about, her work and online shop",
+  description:
+    "Website for Belle Proffitt's pottery, including home, about, her work and online shop",
 };
 
 export default function RootLayout({
@@ -15,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MenuBar /> 
+        <MenuBar />
         {children}
       </body>
     </html>
