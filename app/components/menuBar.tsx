@@ -34,7 +34,7 @@ const MenuBar: React.FC = () => {
         <div className="flex items-center space-x-8 max-md:hidden">
           <ul className="flex space-x-10 text-black font-bagnard">
             <li>
-              <Link className="text-lg" href="/">
+              <Link className="text-lg" href="/shop">
                 Shop
               </Link>
             </li>

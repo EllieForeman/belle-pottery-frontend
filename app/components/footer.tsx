@@ -41,7 +41,10 @@ export default function Footer() {
               placeholder="Email Address"
               className="bg-[rgba(151,131,120,0.5)] rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)] focus:border-[rgba(151,131,120,1)]"
             />
-            <button type="submit" className="text-lg text-left underline underline-offset-4 font-semibold px-6 py-2">
+            <button
+              type="submit"
+              className="text-lg text-left underline underline-offset-4 font-semibold px-6 py-2"
+            >
               Sign up
             </button>
           </form>

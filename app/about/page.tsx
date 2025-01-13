@@ -216,21 +216,10 @@ const AboutPage = () => {
                 </details>
               </div>
             </div>
-
-            {/* Photo on the Right */}
-            {/* <div className="flex-[5] p-4 relative min-h-[600px] flex items-center">
-            <Image
-              src="/kiln.png"
-              alt="CV Photo"
-              fill
-              className="object-cover object-center p-6"
-            />
-          </div> */}
             <div className="w-[300px] md:w-[400px] lg:w-[500px] h-auto p-4 flex items-center justify-center overflow-hidden">
               <Image
                 src="/kiln.png"
                 alt="CV Photo"
-                layout="intrinsic"
                 width={500}
                 height={300}
                 className="object-cover"
