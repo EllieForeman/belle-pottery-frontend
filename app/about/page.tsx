@@ -1,7 +1,69 @@
 import Image from "next/image";
 import Footer from "../components/footer";
 
-const AboutPage = () => {
+interface AboutPageData {
+  bioDescription: string;
+  bioBoldHeadline: string;
+  processDescription: string;
+  profilePhoto: {
+    url: string;
+  };
+  imageTwo: {
+    url: string;
+  };
+  imageThree: {
+    url: string;
+  };
+  education_and_trainings: {
+    title: string;
+    location: string;
+    year: string;
+  }[];
+  exhibitions_and_collections: {
+    year: string;
+    title: string;
+    location: string;
+  }[];
+  teachings: {
+    title: string;
+    location: string;
+    year: string;
+  }[];
+}
+
+export default async function AboutPage() {
+  let aboutData: any = null; 
+
+  try {
+    const res = await fetch(
+      "https://belle-proffitt-pottery-1ae63963fcee.herokuapp.com/api/about?populate=*",
+      { cache: "no-store" },
+    );
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch about page data: ${res.status}`);
+    }
+
+    const response = await res.json();
+    aboutData = response?.data || null; 
+    console.log("Fetched aboutData:", aboutData);
+  } catch (error) {
+    console.error("Error fetching About Page data:", error);
+  }
+
+  if (!aboutData) {
+    return <div>Error loading about page data. Please try again later.</div>;
+  }
+
+  const profileImage = `https://belle-proffitt-pottery-1ae63963fcee.herokuapp.com${aboutData.profilePhoto?.url}`;
+  const processImage = `https://belle-proffitt-pottery-1ae63963fcee.herokuapp.com${aboutData.imageTwo?.url}`;
+
+  const {
+    bioBoldHeadline,
+    bioDescription,
+    processDescription,
+  } = aboutData;
+
   return (
     <div>
       <div className="container mx-auto max-w-5.5xl p-4">
@@ -9,59 +71,41 @@ const AboutPage = () => {
           {/* About Section */}
           <div className="flex-1 basis-[calc(48%-24px)] p-4 min-h-[450px] flex flex-col mb-3">
             <h2 className="text-2xl font-bagnard">About</h2>
-            <p className="mt-4 text-lg text-gray-700 leading-spacey font-bold">
-              Isabelle is a potter living and working in Bristol, specialising
-              in hand built and something something.
+            <p className="mt-4 text-lg text-gray-700 leading-spacey font-bold whitespace-pre-line">
+              {bioBoldHeadline}
             </p>
-            <p className="mt-4 text-lg text-gray-700 leading-spacey">
-              Isabelle's background is drawing based and she has a First Class
-              Honours degree from Kingston School of Art. During her time in
-              Kingston, Isabelle’s practice soon became centred around clay and
-              in 2022, she moved to Stoke-on-Trent to train in studio pottery
-              for two years at Clay College. Alongside making her own work,
-              Isabelle works as a pottery technician and teaches both throwing
-              and hand-building to beginner and more experienced potters.
+            <p className="mt-4 text-lg text-gray-700 leading-spacey whitespace-pre-line">
+              {bioDescription}
             </p>
           </div>
 
           {/* Photo 1 */}
           <div className="flex-1 basis-[calc(48%-24px)] p-4 relative min-h-[400px] flex items-center mb-3">
             <Image
-              src="/headshot1.png"
+              src={profileImage}
               alt="Loading..."
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover object-top p-6"
+              priority
             />
           </div>
 
           {/* Photo 2 */}
           <div className="flex-1 basis-[calc(48%-24px)] p-4 relative min-h-[400px] flex items-center">
             <Image
-              src="/headshot2.png"
+              src={processImage}
               alt="Loading..."
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover object-center p-6"
             />
           </div>
-
           {/* Process Section */}
           <div className="flex-1 basis-[calc(48%-24px)] p-4 min-h-[400px] flex flex-col">
             <h2 className="text-2xl font-bagnard">Process</h2>
-            <p className="mt-4 text-lg text-gray-700 leading-spacey">
-              As much as I shape clay, clay is what shapes me, and influences
-              how I interact with it as a material. I approach my making with
-              curiosity and play, paying close attention to how the clay
-              responds to my hands and tools. I consider how I might encourage
-              the marks of impressed stamps to sweep or fly across a stretched
-              slab of porcelain, or how waves of clay might ripple up a wooden
-              rib.
-            </p>
-            <p className="mt-4 text-lg text-gray-700 leading-spacey">
-              I seek to capture a lively and natural loose energy in my work and
-              I draw greatly from surface quality. Whether throwing or hand
-              building my aim is the same: to capture a sense of movement. The
-              marks that I impress, stretch and cut help to instil a sense of me
-              into the pots I make.
+            <p className="mt-4 text-lg text-gray-700 whitespace-pre-line leading-spacey">
+              {processDescription}
             </p>
           </div>
 
@@ -231,6 +275,4 @@ const AboutPage = () => {
       <Footer />
     </div>
   );
-};
-
-export default AboutPage;
+}

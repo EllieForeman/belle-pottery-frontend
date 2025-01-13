@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 
 type Product = {
   id: number;
@@ -21,9 +21,12 @@ export default function ShopPage() {
   const products: Product[] = mockProducts;
 
   function generateSlug(title: string, id: number): string {
-    return `${title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}-${id}`;
+    return `${title
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^\w-]+/g, "")}-${id}`;
   }
-  
+
   return (
     <div className="container mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {products.map((product) => {
@@ -34,24 +37,27 @@ export default function ShopPage() {
           productImages?.data?.[0]?.attributes?.url || "/placeholder-image.jpg";
 
         return (
-          <Link href={`/shop/${generateSlug(product.attributes.title, product.id)}`} key={id}>
-          <div className="cursor-pointer">
-            {/* Product Image */}
-            <div>
-              <Image
-                src={imageUrl}
-                alt={title}
-                width={300}
-                height={300}
-                className="mx-auto object-fill"
-              />
+          <Link
+            href={`/shop/${generateSlug(product.attributes.title, product.id)}`}
+            key={id}
+          >
+            <div className="cursor-pointer">
+              {/* Product Image */}
+              <div>
+                <Image
+                  src={imageUrl}
+                  alt={title}
+                  width={300}
+                  height={300}
+                  className="mx-auto object-fill"
+                />
+              </div>
+              <div className="text-center p-1">
+                {/* Product Info */}
+                <h2 className="text-lg font-bold mt-4">{title}</h2>
+                <p className="text-gray-500">£{price}</p>
+              </div>
             </div>
-            <div className="text-center p-1">
-              {/* Product Info */}
-              <h2 className="text-lg font-bold mt-4">{title}</h2>
-              <p className="text-gray-500">£{price}</p>
-            </div>
-          </div>
           </Link>
         );
       })}

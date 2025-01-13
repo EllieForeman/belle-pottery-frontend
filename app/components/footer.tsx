@@ -6,11 +6,9 @@ export default function Footer() {
       <div className="absolute inset-0">
         <Image
           src="/footerBg.png"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          quality={80}
-          priority={true}
+          alt="Footer Background"
+          fill
+          className="object-cover"
         />
       </div>
 

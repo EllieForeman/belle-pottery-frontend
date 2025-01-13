@@ -1,7 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ["belle-proffitt-pottery-1ae63963fcee.herokuapp.com"],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

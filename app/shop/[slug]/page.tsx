@@ -149,7 +149,6 @@ const mockProducts: Product[] = [
   },
 ];
 
-
 // Helper to extract product ID from slug
 function getProductIdFromSlug(slug: string): number | null {
   const idPart = slug.split("-").pop();
@@ -163,7 +162,11 @@ async function getProductBySlug(slug: string): Promise<Product | undefined> {
   return mockProducts.find((product) => product.id === productId);
 }
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const product = await getProductBySlug(params.slug);
 
   if (!product) {
