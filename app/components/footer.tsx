@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="relative text-gray-800 py-12 px-6">
+    <footer className="relative  py-12 px-6">
       <div className="absolute inset-0">
         <Image
           src="/footerBg.png"
@@ -15,10 +15,10 @@ export default function Footer() {
       <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start">
         {/* Newsletter Signup Section */}
         <div className="w-full md:w-1/2">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 font-bagnard">
+          <h2 className="text-2xl font-semibold  mb-4 font-bagnard">
             Sign up to my newsletter
           </h2>
-          <p className="text-[1.1rem] text-gray-700 mb-6">
+          <p className="text-[1.1rem]  mb-6">
             Sign up with your email to receive occasional news and updates
             <br />
             (maximum 12 a year).
@@ -50,40 +50,31 @@ export default function Footer() {
 
         {/* Links Section */}
         <div className="w-full md:w-1/2 mt-8 md:mt-0 pl-60">
-          <h2 className="text-lg font-semibold text-gray-800 pb-2">Links</h2>
-          <a
-            href="/shop"
-            className="text-[1.1rem] block text-gray-600 hover:underline pb-2"
-          >
+          <h2 className="text-lg font-semibold  pb-2">Links</h2>
+          <a href="/shop" className="text-[1.1rem] block  hover:underline pb-2">
             Shop
           </a>
-          <a
-            href="/faq"
-            className="text-[1.1rem] block text-gray-600 hover:underline pb-2"
-          >
+          <a href="/faq" className="text-[1.1rem] block  hover:underline pb-2">
             FAQ
           </a>
-          <a
-            href="/info"
-            className="text-[1.1rem] block text-gray-600 hover:underline pb-2"
-          >
+          <a href="/info" className="text-[1.1rem] block  hover:underline pb-2">
             Info
           </a>
           <a
             href="/gallery"
-            className="text-[1.1rem] block text-gray-600 hover:underline pb-2"
+            className="text-[1.1rem] block  hover:underline pb-2"
           >
             Gallery
           </a>
           <a
             href="/instagram"
-            className="text-[1.1rem] block text-gray-600 hover:underline pb-2"
+            className="text-[1.1rem] block  hover:underline pb-2"
           >
             Instagram
           </a>
           <a
             href="/contact"
-            className="text-[1.1rem] block text-gray-600 hover:underline pb-2"
+            className="text-[1.1rem] block  hover:underline pb-2"
           >
             Contact
           </a>
@@ -91,7 +82,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright Section */}
-      <div className="relative mt-8 text-center text-gray-500 text-sm">
+      <div className="relative mt-8 text-center  text-sm">
         &copy; 2024 by Isabelle Proffitt
       </div>
     </footer>

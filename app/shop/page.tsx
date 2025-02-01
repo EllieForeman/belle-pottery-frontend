@@ -55,7 +55,7 @@ export default function ShopPage() {
               <div className="text-center p-1">
                 {/* Product Info */}
                 <h2 className="text-lg font-bold mt-4">{title}</h2>
-                <p className="text-gray-500">£{price}</p>
+                <p className="">£{price}</p>
               </div>
             </div>
           </Link>

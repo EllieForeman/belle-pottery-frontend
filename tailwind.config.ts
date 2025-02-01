@@ -13,8 +13,8 @@ export default {
       screens: {
         sm: "100%", // Full width for small screens
         md: "100%", // No max-width at the 768px breakpoint
-        lg: "1024px", // Define max-width for larger breakpoints if needed
-        xl: "1280px",
+        lg: "1380px", // Define max-width for larger breakpoints if needed
+        xl: "1380px",
       },
     },
     extend: {

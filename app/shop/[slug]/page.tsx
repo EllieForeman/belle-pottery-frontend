@@ -195,10 +195,8 @@ export default async function ProductPage({
       {/* Product Details */}
       <div className="w-full md:w-1/2 text-left">
         <h1 className="text-3xl font-bold mb-4">{title}</h1>
-        <p className="text-xl text-gray-600 mb-4">£{price}</p>
-        {careInstructions && (
-          <p className="text-gray-500 mb-6">{careInstructions}</p>
-        )}
+        <p className="text-xl  mb-4">£{price}</p>
+        {careInstructions && <p className=" mb-6">{careInstructions}</p>}
         <button className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-500">
           Add to Basket
         </button>

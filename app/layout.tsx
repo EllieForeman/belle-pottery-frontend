@@ -3,7 +3,7 @@ import "./globals.css";
 import MenuBar from "./components/menuBar";
 
 export const metadata: Metadata = {
-  title: "Belle Proffitt Pottery",
+  title: "Isabelle Proffitt Pottery",
   description:
     "Website for Belle Proffitt's pottery, including home, about, her work and online shop",
 };
