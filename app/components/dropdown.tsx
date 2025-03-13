@@ -1,5 +1,6 @@
 "use client";
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useState } from "react";
 
 interface ListItem {
@@ -142,6 +143,44 @@ export function TextDropdown({ title, text }: TextDropdownProps) {
       </summary>
       <div>
         {isOpen && <p className="mt-4 text-lg leading-spacey">{text}</p>}
+      </div>
+    </details>
+  );
+}
+
+export function RichTextDropdown({ title, text }: TextDropdownProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <details
+      className="group border-b border-black py-5 w-full"
+      open={isOpen}
+      onToggle={(e) => setIsOpen(e.currentTarget.open)}
+    >
+      <summary className="flex justify-between items-center cursor-pointer w-full">
+        <span className="text-xl">{title}</span>
+        <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
+      </summary>
+      <div className="mt-4 text-lg leading-spacey">
+        {isOpen && (
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              a: ({ node, ...props }) => (
+                <a
+                  {...props}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-1 underline-offset-4"
+                >
+                  {props.children}
+                </a>
+              ),
+            }}
+          >
+            {text}
+          </ReactMarkdown>
+        )}
       </div>
     </details>
   );

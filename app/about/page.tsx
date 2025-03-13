@@ -3,52 +3,41 @@ import Footer from "../components/footer";
 import {
   ExhibitionsDropdown,
   ListDropdown,
+  RichTextDropdown,
   TextDropdown,
 } from "../components/dropdown";
-
-async function fetchAboutData() {
-  const res = await fetch(
-    "https://belle-proffitt-pottery-1ae63963fcee.herokuapp.com/api/about?populate=*",
-  );
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch about page data: ${res.status}`);
-  }
-
-  const response = await res.json();
-  return response?.data;
-}
+import { fetchFromCMS } from "../lib/api";
+const BASE_URL = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 export default async function AboutPage() {
-  let aboutData;
-  try {
-    aboutData = await fetchAboutData();
-  } catch (error) {
-    console.error("Error fetching About Page data:", error);
-    aboutData = null; // Fallback in case of fetch failure
+  const aboutData = await fetchFromCMS("about");
+
+  console.log("Fetched About Data:", aboutData); // Debugging
+
+  if (!aboutData || !aboutData.data) {
+    return <div>Error loading About data. Please check the API response.</div>;
   }
-  console.log("aboutData", aboutData);
 
-  const profileImage = `https://belle-proffitt-pottery-1ae63963fcee.herokuapp.com${aboutData.profilePhoto.url}`;
-
+  const aboutInfo = aboutData.data;
+  const profileImage = `${aboutInfo.profilePhoto.formats.medium.url}`;
   const bioBoldHeadline =
-    aboutData?.bioBoldHeadline || "No headline available.";
+    aboutInfo?.bioBoldHeadline || "No headline available.";
   const bioDescription =
-    aboutData?.bioDescription || "No description available.";
-  const education = aboutData?.education_and_trainings || [];
-  const exhibitions = aboutData?.exhibitions || [];
-  const collections = aboutData?.collections || [];
-  const teaching = aboutData?.teaching_and_others || [];
-  const commissionsText = aboutData.comissionsText;
-  const teachingText = aboutData.teachingText;
-  const stockistsText = aboutData.stockistText;
-  console.log("phtoo", stockistsText);
+    aboutInfo?.bioDescription || "No description available.";
+  const education = aboutInfo?.education_and_trainings || [];
+  const exhibitions = aboutInfo?.exhibitions || [];
+  const collections = aboutInfo?.collections || [];
+  const teaching = aboutInfo?.teaching_and_others || [];
+  const commissionsText = aboutInfo.comissionsText;
+  const teachingText = aboutInfo.teachingText;
+  const stockistsText = aboutInfo.stockistText;
+  console.log("phtoo", profileImage);
   return (
     <div>
       <div className="container mx-auto mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full mb-20">
           {/* About Section */}
-          <div className="">
+          <div>
             <p className="text-lg leading-spacey font-bold whitespace-pre-line my-16">
               {bioBoldHeadline}
             </p>
@@ -58,11 +47,12 @@ export default async function AboutPage() {
           </div>
 
           {/* Photo */}
-          <div className="relative">
+          <div className="relative w-100">
             <Image
               src={profileImage}
               alt="Profile Photo"
               fill
+              sizes="100vw"
               className="object-cover object-top"
               priority
             />
@@ -95,7 +85,7 @@ export default async function AboutPage() {
                 <TextDropdown title="Teaching" text={teachingText} />
               )}
               {stockistsText && (
-                <TextDropdown title="Stockists" text={stockistsText} />
+                <RichTextDropdown title="Stockists" text={stockistsText} />
               )}
             </div>
           )}

@@ -44,7 +44,7 @@ const MenuBar: React.FC = () => {
               </Link>
             </li>
             <li>
-              <Link className="text-lg" href="/contact">
+              <Link className="text-lg" href="/gallery">
                 Gallery
               </Link>
             </li>
@@ -93,7 +93,7 @@ const MenuBar: React.FC = () => {
                   href="/contact"
                   onClick={() => setIsOpen(false)}
                 >
-                  Gallry
+                  Gallery
                 </Link>
               </li>
             </ul>

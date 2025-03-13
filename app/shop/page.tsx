@@ -1,197 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
+import { fetchFromCMS } from "../lib/api";
 
 type Product = {
   id: number;
-  attributes: {
-    title: string;
-    price: number;
-    productImages: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      }[];
-    };
-    careInstructions?: string;
+  title: string;
+  price: number;
+  productMainImage?: {
+    url: string;
   };
 };
 
-export default function ShopPage() {
-  const products: Product[] = mockProducts;
+export default async function ShopPage() {
+  const shopData = await fetchFromCMS("sale-items");
 
-  function generateSlug(title: string, id: number): string {
-    return `${title
-      .toLowerCase()
-      .replace(/ /g, "-")
-      .replace(/[^\w-]+/g, "")}-${id}`;
+  console.log("Fetched Sale Items:", shopData); // Debugging
+
+  if (!shopData || !shopData.data) {
+    return <div className="text-center text-red-500 py-10">Error loading sale items. Please check the API response.</div>;
   }
 
+  
+
   return (
-    <div className="container mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {products.map((product) => {
-        const { id, attributes } = product;
-        const { title, price, productImages, careInstructions } = attributes;
+    <div className="container mx-auto py-10 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        {shopData.data.map((product: any) => {
+          const mainImage = product.productMainImage?.url || "/placeholder.png"; 
 
-        const imageUrl =
-          productImages?.data?.[0]?.attributes?.url || "/placeholder-image.jpg";
-
-        return (
-          <Link
-            href={`/shop/${generateSlug(product.attributes.title, product.id)}`}
-            key={id}
-          >
-            <div className="cursor-pointer">
-              {/* Product Image */}
-              <div>
-                <Image
-                  src={imageUrl}
-                  alt={title}
-                  width={300}
-                  height={300}
-                  className="mx-auto object-fill"
-                />
+          return (
+            <Link key={product.id} href={`/shop/${product.id}`} className="block text-center">
+              <div className="flex flex-col items-center">
+              <div className="w-full relative" style={{ aspectRatio: "1 / 1" }}>
+                  <Image
+                    src={mainImage}
+                    alt={product.title || "Product Image"}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover rounded-md"
+                  />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold">{product.title || "Item Name"}</h3>
+                <p className="text-gray-600">£{product.price ?? 0}</p>
               </div>
-              <div className="text-center p-1">
-                {/* Product Info */}
-                <h2 className="text-lg font-bold mt-4">{title}</h2>
-                <p className="">£{price}</p>
-              </div>
-            </div>
-          </Link>
-        );
-      })}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
-
-// Mock product data
-const mockProducts: Product[] = [
-  {
-    id: 1,
-    attributes: {
-      title: "Grump Cup 1",
-      price: 40,
-      productImages: {
-        data: [
-          {
-            attributes: {
-              url: "/Grump.png", // Ensure placeholder images exist in `public/images/`
-            },
-          },
-        ],
-      },
-      careInstructions:
-        "Dishwasher safe, although hand washing is recommended.",
-    },
-  },
-  {
-    id: 2,
-    attributes: {
-      title: "Grump Cup 2",
-      price: 40,
-      productImages: {
-        data: [
-          {
-            attributes: {
-              url: "/Grump.png",
-            },
-          },
-        ],
-      },
-      careInstructions:
-        "Dishwasher safe, although hand washing is recommended.",
-    },
-  },
-  {
-    id: 3,
-    attributes: {
-      title: "Grump Cup 3",
-      price: 40,
-      productImages: {
-        data: [
-          {
-            attributes: {
-              url: "/Grump.png",
-            },
-          },
-        ],
-      },
-      careInstructions:
-        "Dishwasher safe, although hand washing is recommended.",
-    },
-  },
-
-  {
-    id: 4,
-    attributes: {
-      title: "Grump Cup 4",
-      price: 40,
-      productImages: {
-        data: [
-          {
-            attributes: {
-              url: "/Grump.png",
-            },
-          },
-        ],
-      },
-      careInstructions:
-        "Dishwasher safe, although hand washing is recommended.",
-    },
-  },
-  {
-    id: 5,
-    attributes: {
-      title: "Grump Cup 5",
-      price: 40,
-      productImages: {
-        data: [
-          {
-            attributes: {
-              url: "/Grump.png",
-            },
-          },
-        ],
-      },
-      careInstructions:
-        "Dishwasher safe, although hand washing is recommended.",
-    },
-  },
-  {
-    id: 6,
-    attributes: {
-      title: "Grump Cup 6",
-      price: 40,
-      productImages: {
-        data: [
-          {
-            attributes: {
-              url: "/Grump.png",
-            },
-          },
-        ],
-      },
-      careInstructions:
-        "Dishwasher safe, although hand washing is recommended.",
-    },
-  },
-  {
-    id: 7,
-    attributes: {
-      title: "Grump Cup 7",
-      price: 40,
-      productImages: {
-        data: [
-          {
-            attributes: {
-              url: "/Grump.png",
-            },
-          },
-        ],
-      },
-      careInstructions:
-        "Dishwasher safe, although hand washing is recommended.",
-    },
-  },
-];
