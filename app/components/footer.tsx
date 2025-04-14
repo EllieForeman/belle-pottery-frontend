@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -51,33 +52,33 @@ export default function Footer() {
         {/* Links Section */}
         <div className="w-full md:w-1/2 mt-8 md:mt-0 pl-60">
           <h2 className="text-lg font-semibold  pb-2">Links</h2>
-          <a href="/shop" className="text-[1.1rem] block  hover:underline pb-2">
+          <Link href="/shop" className="text-[1.1rem] block  hover:underline pb-2">
             Shop
-          </a>
-          <a href="/faq" className="text-[1.1rem] block  hover:underline pb-2">
+          </Link>
+          <Link href="/faq" className="text-[1.1rem] block  hover:underline pb-2">
             FAQ
-          </a>
-          <a href="/info" className="text-[1.1rem] block  hover:underline pb-2">
+          </Link>
+          <Link href="/info" className="text-[1.1rem] block  hover:underline pb-2">
             Info
-          </a>
-          <a
+          </Link>
+          <Link
             href="/gallery"
             className="text-[1.1rem] block  hover:underline pb-2"
           >
             Gallery
-          </a>
-          <a
+          </Link>
+          <Link
             href="/instagram"
             className="text-[1.1rem] block  hover:underline pb-2"
           >
             Instagram
-          </a>
-          <a
+          </Link>
+          <Link
             href="/contact"
             className="text-[1.1rem] block  hover:underline pb-2"
           >
             Contact
-          </a>
+          </Link>
         </div>
       </div>
 

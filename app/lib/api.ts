@@ -1,11 +1,11 @@
 const BASE_URL = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
-export async function fetchFromCMS(endpoint: string) {
+export async function fetchFromCMS(endpoint: string, query = "") {
   console.log("BASE_URL:", process.env.NEXT_PUBLIC_CMS_BASE_URL);
   console.log("here", `${BASE_URL}/${endpoint}?populate=*`);
-
+  const url = `${BASE_URL}/${endpoint}?populate=*${query ? `&${query}` : ""}`;
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}?populate=*`, {
+    const res = await fetch(url, {
       // next: { revalidate: false },
       cache: 'no-store', // completely disables caching for LOCAL ONLY
       next: { revalidate: 0 }, // always fresh in dev, ISR in prod

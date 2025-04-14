@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { TextDropdown } from "@/app/components/dropdown";
+import { fetchFromCMS } from "@/app/lib/api";
 
 type Product = {
   id: number;
@@ -14,37 +15,30 @@ type Product = {
   deliveryDetails?: string;
 };
 
+export const dynamic = "force-dynamic";
+
+
 // **Fetch product from Strapi by ID**
 async function getProductById(id: string): Promise<Product | null> {
-  try {
-    console.log("Fetching product for ID:", id);
-
-    const res = await fetch(
-      `https://belle-proffitt-pottery-1ae63963fcee.herokuapp.com/api/sale-items?filters[id][$eq]=${id}&populate=*`,
-      { cache: "no-store" },
-    );
-
-    if (!res.ok) throw new Error(`Failed to fetch product ${id}`);
-
-    const { data } = await res.json();
-    return data.length > 0 ? data[0] : null;
-  } catch (error) {
-    console.error("Error fetching product:", error);
-    return null;
-  }
+  const data = await fetchFromCMS("sale-items", `filters[id][$eq]=${id}`);
+  if (!data || !data.data || data.data.length === 0) return null;
+  return data.data[0];
 }
 
-// **Product Page Component**
+
+type Params = { id: string; slug: string };
+
+
 export default async function ProductPage({
   params,
 }: {
-  params: { id: string; slug: string };
+  params: Promise<{ id: string; slug: string }>;
 }) {
-  const { id } = params;
+  const { id, slug } = await params;
+
   const product = await getProductById(id);
-
-  if (!product) return notFound(); // Show 404 if product not found
-
+  if (!product) return notFound();
+  
   const {
     title,
     price,
