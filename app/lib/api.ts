@@ -6,7 +6,10 @@ export async function fetchFromCMS(endpoint: string) {
 
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}?populate=*`, {
-      next: { revalidate: false },
+      // next: { revalidate: false },
+      cache: 'no-store', // completely disables caching for LOCAL ONLY
+      next: { revalidate: 0 }, // always fresh in dev, ISR in prod
+
     });
 
     if (!res.ok) {
