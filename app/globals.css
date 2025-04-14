@@ -23,3 +23,35 @@ body {
 h1 {
   font-family: "Bagnard";
 }
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.image-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.image-scrollbar::-webkit-scrollbar-track {
+  padding: 5px 0;
+}
+.image-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border-radius: 10px;
+}
+
+/* Move scrollbar to the left */
+.image-scrollbar {
+  direction: rtl;
+  overflow-y: auto;
+}
+
+.image-scrollbar > * {
+  direction: ltr;
+}

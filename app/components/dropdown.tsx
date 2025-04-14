@@ -142,7 +142,7 @@ export function TextDropdown({ title, text }: TextDropdownProps) {
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
       <div>
-        {isOpen && <p className="mt-4 text-lg leading-spacey">{text}</p>}
+        {isOpen && <p className="mt-8 mb-4 text-lg leading-spacey">{text}</p>}
       </div>
     </details>
   );

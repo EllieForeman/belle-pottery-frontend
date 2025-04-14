@@ -5,7 +5,10 @@ export async function fetchFromCMS(endpoint: string) {
   console.log("here", `${BASE_URL}/${endpoint}?populate=*`);
 
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}?populate=*`);
+    const res = await fetch(`${BASE_URL}/${endpoint}?populate=*`, {
+      next: { revalidate: false },
+    });
+
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
     }

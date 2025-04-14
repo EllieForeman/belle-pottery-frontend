@@ -11,7 +11,7 @@ const MenuBar: React.FC = () => {
   };
 
   return (
-    <header className="bg-[var(--background)] mx-4 p-2 lg:p-4 lg:mx-8">
+    <header className="bg-[var(--background)] lg:p-4 lg:mx-8">
       <button
         className="z-index: 9999 absolute right-0 mr-6 mt-2 md:hidden block focus:outline-none z-20"
         onClick={handleClick}
@@ -20,7 +20,7 @@ const MenuBar: React.FC = () => {
           {isOpen ? "close" : "menu"}
         </span>
       </button>
-      <nav className="flex justify-between items-center mt-4">
+      <nav className="flex justify-between items-center mt-2">
         <div>
           <Link href="/">
             <h1 className="text-xl md:text-xl lg:text-4xl text-left">
@@ -32,7 +32,7 @@ const MenuBar: React.FC = () => {
         </div>
         {/*  DESKTOP MENU */}
         <div className="flex items-center space-x-8 max-md:hidden">
-          <ul className="flex space-x-10 text-black font-bagnard">
+          <ul className="flex space-x-10 text-[var(--foreground)] font-bagnard">
             <li>
               <Link className="text-lg" href="/shop">
                 Shop
@@ -50,6 +50,11 @@ const MenuBar: React.FC = () => {
             </li>
           </ul>
           <div className="flex items-center justify-end w-[100px]">
+            <Link
+              className="text-4xl"
+              href="/cart"
+              onClick={() => setIsOpen(false)}
+            ></Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

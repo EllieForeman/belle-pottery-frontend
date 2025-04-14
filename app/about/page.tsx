@@ -31,7 +31,7 @@ export default async function AboutPage() {
   const commissionsText = aboutInfo.comissionsText;
   const teachingText = aboutInfo.teachingText;
   const stockistsText = aboutInfo.stockistText;
-  console.log("phtoo", profileImage);
+  console.log(education);
   return (
     <div>
       <div className="container mx-auto mt-4">
@@ -52,7 +52,7 @@ export default async function AboutPage() {
               src={profileImage}
               alt="Profile Photo"
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-top"
               priority
             />
@@ -62,16 +62,27 @@ export default async function AboutPage() {
         {/* Dropdown and Photo Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full mt-8 mb-20">
           <div className="">
-            <h2 className="text-2xl underline mb-4 underline-offset-4 decoration-1">
-              CV
-            </h2>
-            <ListDropdown title="Education & Training" items={education} />
-            <ExhibitionsDropdown
-              title="Exhibitions and Collections"
-              exhibitions={exhibitions}
-              collections={collections}
-            />
-            <ListDropdown title="Teaching & Other Work" items={teaching} />
+            {(education?.length > 0 ||
+              exhibitions?.length > 0 ||
+              collections?.length > 0 ||
+              teaching?.length > 0) && (
+              <h2 className="text-2xl underline mb-4 underline-offset-4 decoration-1">
+                CV
+              </h2>
+            )}
+            {education?.length > 0 && (
+              <ListDropdown title="Education & Training" items={education} />
+            )}
+            {(exhibitions?.length > 0 || collections?.length > 0) && (
+              <ExhibitionsDropdown
+                title="Exhibitions and Collections"
+                exhibitions={exhibitions}
+                collections={collections}
+              />
+            )}
+            {teaching?.length > 0 && (
+              <ListDropdown title="Teaching & Other Work" items={teaching} />
+            )}
           </div>
           {(commissionsText || teachingText || stockistsText) && (
             <div>
@@ -89,7 +100,6 @@ export default async function AboutPage() {
               )}
             </div>
           )}
-          ;
         </div>
       </div>
       <Footer />
