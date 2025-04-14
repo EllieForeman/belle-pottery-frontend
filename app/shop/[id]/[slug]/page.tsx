@@ -97,9 +97,23 @@ export default async function ProductPage({
           {itemDescription || "No description available."}
         </p>
 
-        <button className="mt-12 mb-12 px-6 py-3 bg-[var(--foreground)] text-[var(--background)] border-2 border-transparent rounded transition-all duration-300 hover:bg-[var(--background)] hover:text-[var(--foreground)] hover:border-[var(--foreground)] hover:border-2">
-          Add to basket
-        </button>
+        <form
+          action="/api/checkout_sessions"
+          method="POST"
+          className="mt-12 mb-12"
+        >
+          <input type="hidden" name="title" value={title} />
+          <input type="hidden" name="description" value={itemDescription || ''} />
+          <input type="hidden" name="price" value={price} />
+          <button
+            type="submit"
+            role="link"
+            className="px-6 py-3 bg-[var(--foreground)] text-[var(--background)] border-2 border-transparent rounded transition-all duration-300 hover:bg-[var(--background)] hover:text-[var(--foreground)] hover:border-[var(--foreground)] hover:border-2"
+          >
+            Buy now
+          </button>
+        </form>
+
 
         {/* Care & Shipping Dropdowns using `TextDropdown` */}
         <TextDropdown
