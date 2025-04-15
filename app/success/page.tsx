@@ -1,7 +1,5 @@
-// app/success/page.tsx
 import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
-import { headers } from 'next/headers';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16' as any,
