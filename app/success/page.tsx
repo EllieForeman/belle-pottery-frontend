@@ -8,15 +8,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export default async function SuccessPage({
   searchParams,
 }: {
-  searchParams: { session_id?: string };
+  searchParams: Promise<{ session_id?: string }>;
 }) {
-  const sessionId = searchParams.session_id;
+  const { session_id } = await searchParams;
 
-  if (!sessionId) {
+  if (!session_id) {
     throw new Error('Please provide a valid session_id (`cs_test_...`)');
   }
 
-  const session = await stripe.checkout.sessions.retrieve(sessionId, {
+  const session = await stripe.checkout.sessions.retrieve(session_id, {
     expand: ['line_items', 'payment_intent', 'customer_details'],
   });
 
@@ -27,23 +27,13 @@ export default async function SuccessPage({
     redirect('/');
   }
 
-  if (status === 'complete') {
-    return (
-      <section id="success" className="container mx-auto py-20 text-center">
-        <p className="text-xl mb-4">
-          Thank you for ordering my ceramics! A confirmation email will be sent to{' '}
-          <strong>{customerEmail}</strong>. If you have any questions, please email:
-        </p>
-        <a href="mailto:orders@example.com" className="text-blue-600 underline">
-            hello@belleproffitt.com
-        </a>
-      </section>
-    );
-  }
-
   return (
     <section className="container mx-auto py-20 text-center">
-      <p>Unable to verify the order status.</p>
+      <h1 className="text-3xl font-bold mb-4">🎉 Thank you for your order!</h1>
+      <p className="text-lg mb-2">
+        A confirmation email has been sent to <strong>{customerEmail}</strong>.
+      </p>
+      <p>If you have questions, contact <a href="mailto:orders@example.com">orders@example.com</a></p>
     </section>
   );
 }
