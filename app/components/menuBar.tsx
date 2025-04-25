@@ -69,7 +69,7 @@ const MenuBar: React.FC = () => {
               <li>
                 <Link
                   className="text-4xl"
-                  href="/"
+                  href="/shop"
                   onClick={() => setIsOpen(false)}
                 >
                   Shop
@@ -87,7 +87,7 @@ const MenuBar: React.FC = () => {
               <li>
                 <Link
                   className="text-4xl"
-                  href="/contact"
+                  href="/gallery"
                   onClick={() => setIsOpen(false)}
                 >
                   Gallery

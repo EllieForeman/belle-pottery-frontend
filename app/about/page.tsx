@@ -31,7 +31,7 @@ export default async function AboutPage() {
   const stockistsText = aboutInfo.stockistText;
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-8 sm:mb-12">
         {/* About Section */}
         <div className="order-2 md:order-1 mt-4 sm:mt-0">
           <p className="text-lg leading-spacey font-bold whitespace-pre-line md:mt-8 md:mb-12">
@@ -59,7 +59,7 @@ export default async function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full">
         {(commissionsText || teachingText || stockistsText) && (
           <div>
-            <h2 className="text-2xl mt-20 md:mt-0 underline decoration-1 mb-4 underline-offset-4">
+            <h2 className="text-2xl sm:mt-20 md:mt-0 underline decoration-1 mb-4 underline-offset-4">
               Contact & Enquiries
             </h2>
             {commissionsText && (
@@ -78,7 +78,7 @@ export default async function AboutPage() {
             exhibitions?.length > 0 ||
             collections?.length > 0 ||
             teaching?.length > 0) && (
-            <h2 className="text-2xl underline mb-4 underline-offset-4 decoration-1">
+            <h2 className="text-2xl underline mb-4 underline-offset-4 decoration-1 mt-8 md:mt-0">
               CV
             </h2>
           )}

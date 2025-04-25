@@ -46,7 +46,7 @@ export function ListDropdown({ title, items }: ListDropdownProps) {
       open={isOpen}
       onToggle={(e) => setIsOpen(e.currentTarget.open)}
     >
-      <summary className="flex justify-between items-center cursor-pointer w-full">
+      <summary className="[&::-webkit-details-marker]:hidden flex justify-between items-center cursor-pointer w-full">
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
@@ -90,7 +90,7 @@ export function ExhibitionsDropdown({
       open={isOpen}
       onToggle={(e) => setIsOpen(e.currentTarget.open)}
     >
-      <summary className="flex justify-between items-center cursor-pointer w-full">
+      <summary className="[&::-webkit-details-marker]:hidden flex justify-between items-center cursor-pointer w-full">
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
@@ -137,7 +137,7 @@ export function TextDropdown({ title, text }: TextDropdownProps) {
       open={isOpen}
       onToggle={(e) => setIsOpen(e.currentTarget.open)}
     >
-      <summary className="flex justify-between items-center cursor-pointer w-full">
+      <summary className="[&::-webkit-details-marker]:hidden flex justify-between items-center cursor-pointer w-full">
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
@@ -157,7 +157,7 @@ export function RichTextDropdown({ title, text }: TextDropdownProps) {
       open={isOpen}
       onToggle={(e) => setIsOpen(e.currentTarget.open)}
     >
-      <summary className="flex justify-between items-center cursor-pointer w-full">
+      <summary className="[&::-webkit-details-marker]:hidden flex justify-between items-center cursor-pointer w-full">
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
