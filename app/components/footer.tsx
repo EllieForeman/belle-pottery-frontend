@@ -8,6 +8,7 @@ export default function Footer() {
         <Image
           src="/footerBg.png"
           alt="Footer Background"
+          priority
           fill
           className="object-cover"
         />
