@@ -34,11 +34,10 @@ export default async function AboutPage() {
   console.log(education);
   return (
     <div>
-      <div className="container mx-auto mt-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-12">
           {/* About Section */}
-          <div>
-            <p className="text-lg leading-spacey font-bold whitespace-pre-line my-16">
+          <div className="order-2 md:order-1 mt-4 sm:mt-0">
+            <p className="text-lg leading-spacey font-bold whitespace-pre-line md:mt-8 md:mb-12">
               {bioBoldHeadline}
             </p>
             <p className="mt-4 text-lg leading-spacey whitespace-pre-line">
@@ -47,7 +46,7 @@ export default async function AboutPage() {
           </div>
 
           {/* Photo */}
-          <div className="relative w-100">
+          <div className="order-1 md:order-2 relative w-full aspect-[3/4]">
             <Image
               src={profileImage}
               alt="Profile Photo"
@@ -60,8 +59,24 @@ export default async function AboutPage() {
         </div>
 
         {/* Dropdown and Photo Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full mt-8 mb-20">
-          <div className="">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full">
+        {(commissionsText || teachingText || stockistsText) && (
+            <div>
+              <h2 className="text-2xl mt-20 md:mt-0 underline decoration-1 mb-4 underline-offset-4">
+                Contact & Enquiries
+              </h2>
+              {commissionsText && (
+                <TextDropdown title="Commissions" text={commissionsText} />
+              )}
+              {teachingText && (
+                <TextDropdown title="Teaching" text={teachingText} />
+              )}
+              {stockistsText && (
+                <RichTextDropdown title="Stockists" text={stockistsText} />
+              )}
+            </div>
+          )}
+          <div>
             {(education?.length > 0 ||
               exhibitions?.length > 0 ||
               collections?.length > 0 ||
@@ -84,25 +99,8 @@ export default async function AboutPage() {
               <ListDropdown title="Teaching & Other Work" items={teaching} />
             )}
           </div>
-          {(commissionsText || teachingText || stockistsText) && (
-            <div>
-              <h2 className="text-2xl mt-20 md:mt-0 underline decoration-1 mb-4 underline-offset-4">
-                Contact & Enquiries
-              </h2>
-              {commissionsText && (
-                <TextDropdown title="Commissions" text={commissionsText} />
-              )}
-              {teachingText && (
-                <TextDropdown title="Teaching" text={teachingText} />
-              )}
-              {stockistsText && (
-                <RichTextDropdown title="Stockists" text={stockistsText} />
-              )}
-            </div>
-          )}
+          
         </div>
-      </div>
-      <Footer />
     </div>
   );
 }

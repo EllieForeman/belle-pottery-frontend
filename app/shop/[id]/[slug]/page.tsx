@@ -50,7 +50,7 @@ export default async function ProductPage({
   } = product;
 
   return (
-    <div className="container mx-auto py-10 px-4 md:px-10 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-10">
+    <div className="mx-auto py-10 px-4 md:px-10 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-10">
       {/* Left: Scrollable Image Column */}
       <div className="h-[80vh] overflow-y-auto pr-4 no-scrollbar">
         <div className="flex flex-col gap-4">

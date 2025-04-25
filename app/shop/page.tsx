@@ -6,7 +6,6 @@ export default async function ShopPage() {
   const shopData = await fetchFromCMS("sale-items");
 
   return (
-    <div className="container mx-auto py-10 px-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         {shopData.data.map((product: any) => {
           const mainImage = product.productMainImage?.url || "/placeholder.png";
@@ -42,6 +41,5 @@ export default async function ShopPage() {
           );
         })}
       </div>
-    </div>
   );
 }

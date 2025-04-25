@@ -4,6 +4,8 @@ export async function fetchFromCMS(endpoint: string, query = "") {
   console.log("BASE_URL:", process.env.NEXT_PUBLIC_CMS_BASE_URL);
   console.log("here", `${BASE_URL}/${endpoint}?populate=*`);
   const url = `${BASE_URL}/${endpoint}?populate=*${query ? `&${query}` : ""}`;
+  console.log("url", url);
+
   try {
     const res = await fetch(url, {
       // next: { revalidate: false },

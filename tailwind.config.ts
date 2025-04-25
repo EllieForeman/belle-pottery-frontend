@@ -7,16 +7,6 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    container: {
-      center: true, // Optional: Centers the container horizontally
-      padding: "1rem", // Optional: Adds padding inside the container
-      screens: {
-        sm: "100%", // Full width for small screens
-        md: "100%", // No max-width at the 768px breakpoint
-        lg: "1380px", // Define max-width for larger breakpoints if needed
-        xl: "1380px",
-      },
-    },
     extend: {
       fontFamily: {
         bagnard: ["Bagnard", "sans-serif"],

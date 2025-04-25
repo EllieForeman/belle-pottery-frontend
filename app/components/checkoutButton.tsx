@@ -7,7 +7,6 @@ export default function CheckoutButton() {
 
   console.log("cart payload", cart);
 
-
   const handleCheckout = async () => {
     if (cart.length === 0) return;
 
@@ -32,7 +31,7 @@ export default function CheckoutButton() {
     <button
       onClick={handleCheckout}
       className="w-80 mt-4 px-6 py-3 border-2 rounded bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)] hover:underline hover:underline-offset-4"
-      >
+    >
       Checkout
     </button>
   );

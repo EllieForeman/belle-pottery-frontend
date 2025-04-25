@@ -16,7 +16,7 @@ const MenuBar: React.FC = () => {
   };
 
   return (
-    <header className="bg-[var(--background)] lg:p-4 lg:mx-8">
+    <header className="bg-[var(--background)] p-4 sm:px-6 lg:px-8">
       <button
         className="z-index: 9999 absolute right-0 mr-6 mt-2 md:hidden block focus:outline-none z-20"
         onClick={handleClick}
@@ -56,15 +56,10 @@ const MenuBar: React.FC = () => {
             <li>
               <Link className="text-lg" href="/cart">
                 Basket
-                {itemCount > 0 && (
-                  <span>
-                    : {itemCount}
-                  </span>
-                )}
+                {itemCount > 0 && <span>: {itemCount}</span>}
               </Link>
             </li>
           </ul>
-
         </div>
 
         {/* Full-Screen Mobile Menu */}
@@ -108,11 +103,7 @@ const MenuBar: React.FC = () => {
                   onClick={() => setIsOpen(false)}
                 >
                   Basket
-                  {itemCount > 0 && (
-                    <span>
-                      : {itemCount}
-                    </span>
-                  )}
+                  {itemCount > 0 && <span>: {itemCount}</span>}
                 </Link>
               </li>
             </ul>
