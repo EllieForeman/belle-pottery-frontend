@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className="font-sans">
         <CartProvider>
           <MenuBar />
-          <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-2 pb-10">
+          <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
             {children}
           </div>
           <Footer />
