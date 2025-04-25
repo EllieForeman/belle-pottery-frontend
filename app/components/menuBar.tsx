@@ -65,7 +65,7 @@ const MenuBar: React.FC = () => {
         {/* Full-Screen Mobile Menu */}
         {isOpen && (
           <div
-            className="fixed inset-0 bg-white z-10 flex flex-col justify-center items-center space-y-6 md:hidden"
+            className="bg-[var(--background)] fixed inset-0 z-10 flex flex-col justify-center items-center space-y-6 md:hidden"
             onClick={() => setIsOpen(false)} // Close the menu when clicking outside the links
           >
             <ul className="text-black font-bagnard text-center space-y-12">

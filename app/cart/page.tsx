@@ -27,7 +27,7 @@ export default function CartPage() {
             {cart.map((item) => (
               <li
                 key={item.id}
-                className="relative first:border-t-[1.5px] border-b-[1.5px] border-[var(--foreground)] py-8"
+                className="relative first:border-t-[1.5px] border-b-[1.5px] border-[var(--foreground)] py-2 sm:py-8"
               >
                 <button
                   className="font-bold absolute top-4 right-2 text-sm text-[var(--foreground)] w-6 h-6 flex items-center justify-center border-[1.5px] border-[var(--foreground)]"
