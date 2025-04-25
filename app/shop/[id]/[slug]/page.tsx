@@ -108,9 +108,9 @@ export default async function ProductPage({
         </span>
 
         <h1 className="text-xl sm:mt-5 mb-6 font-sans">{title}</h1>
-        <p className="text-xl mt-2 mb-12">£{price}</p>
+        <p className="text-xl mt-2 mb-4 sm:mb-12">£{price}</p>
 
-        <p className="mt-4 text-lg">
+        <p className="sm:mt-4 text-lg">
           {itemDescription || "No description available."}
         </p>
 
