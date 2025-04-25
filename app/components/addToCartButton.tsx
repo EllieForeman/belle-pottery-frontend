@@ -26,8 +26,6 @@ export default function AddToCartButton({ product }: Props) {
   const outOfStock = availableStock === 0;
   const isMaxedOut = inCartQuantity >= availableStock;
 
-  console.log(quantity, inCartQuantity, availableStock, outOfStock, isMaxedOut);
-
   const handleClick = () => {
     addToCart({
       id: product.id.toString(),

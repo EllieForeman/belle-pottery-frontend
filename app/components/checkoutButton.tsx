@@ -5,8 +5,6 @@ import { useCart } from "../context/cartContext";
 export default function CheckoutButton() {
   const { cart } = useCart();
 
-  console.log("cart payload", cart);
-
   const handleCheckout = async () => {
     if (cart.length === 0) return;
 

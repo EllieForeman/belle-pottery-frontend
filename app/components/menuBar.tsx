@@ -8,10 +8,7 @@ const MenuBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { cart } = useCart();
   const itemCount = cart.length;
-  console.log("cart", cart);
-  console.log("item count", itemCount);
   const handleClick = () => {
-    console.log("Burger menu toggled!", !isOpen);
     setIsOpen(!isOpen);
   };
 

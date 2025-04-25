@@ -12,8 +12,6 @@ const BASE_URL = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 export default async function AboutPage() {
   const aboutData = await fetchFromCMS("about");
 
-  console.log("Fetched About Data:", aboutData); // Debugging
-
   if (!aboutData || !aboutData.data) {
     return <div>Error loading About data. Please check the API response.</div>;
   }
@@ -31,7 +29,6 @@ export default async function AboutPage() {
   const commissionsText = aboutInfo.comissionsText;
   const teachingText = aboutInfo.teachingText;
   const stockistsText = aboutInfo.stockistText;
-  console.log(education);
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-12">
