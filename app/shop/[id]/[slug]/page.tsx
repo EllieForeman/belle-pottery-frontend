@@ -5,6 +5,7 @@ import { TextDropdown } from "@/app/components/dropdown";
 import { fetchFromCMS } from "@/app/lib/api";
 import AddToCartButton from "@/app/components/addToCartButton";
 import CheckoutButton from "@/app/components/checkoutButton";
+import { MobileImageSlider } from "@/app/components/mobileImageSlider";
 
 type Product = {
   id: number;
@@ -50,9 +51,25 @@ export default async function ProductPage({
   } = product;
 
   return (
-    <div className="mx-auto py-10 px-4 md:px-10 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-10">
+    <div className="container mx-auto sm:py-10 sm:px-4 md:px-10 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-10">
+      <div className="block md:hidden">
+        <div className="mb-4">
+          <span className="text-sm">
+            <Link href="/shop" className="hover:underline">
+              Shop
+            </Link>{" "}
+            &gt; {title}
+          </span>
+        </div>
+        <MobileImageSlider 
+          productMainImage={productMainImage} 
+          productImages={productImages} 
+          title={title} 
+        />
+      </div>
+
       {/* Left: Scrollable Image Column */}
-      <div className="h-[80vh] overflow-y-auto pr-4 no-scrollbar">
+      <div className="hidden md:block h-[80vh] overflow-y-auto no-scrollbar">
         <div className="flex flex-col gap-4">
           {/* Main Image */}
           {productMainImage && (
@@ -83,14 +100,14 @@ export default async function ProductPage({
 
       {/* Right: Product Details */}
       <div className="sticky top-20">
-        <span className="text-sm">
+        <span className="text-sm hidden md:block">
           <Link href="/shop" className="hover:underline">
             Shop
           </Link>{" "}
           &gt; {title}
         </span>
 
-        <h1 className="text-xl mt-5 mb-6 font-sans">{title}</h1>
+        <h1 className="text-xl sm:mt-5 mb-6 font-sans">{title}</h1>
         <p className="text-xl mt-2 mb-12">£{price}</p>
 
         <p className="mt-4 text-lg">
