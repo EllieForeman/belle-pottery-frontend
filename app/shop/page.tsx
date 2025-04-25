@@ -2,27 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { fetchFromCMS } from "../lib/api";
 
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  productMainImage?: {
-    url: string;
-  };
-};
-
 export default async function ShopPage() {
   const shopData = await fetchFromCMS("sale-items");
-
-  console.log("Fetched Sale Items:", shopData); // Debugging
-
-  if (!shopData || !shopData.data) {
-    return (
-      <div className="text-center text-red-500 py-10">
-        Error loading sale items. Please check the API response.
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto py-10 px-4">

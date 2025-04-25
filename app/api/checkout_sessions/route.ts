@@ -1,21 +1,21 @@
-import Stripe from 'stripe';
-import { NextResponse } from 'next/server';
+import Stripe from "stripe";
+import { NextResponse } from "next/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16' as any,
+  apiVersion: "2023-10-16" as any,
 });
 
 export async function POST(req: Request) {
   const formData = await req.formData();
-  const title = formData.get('title') as string;
-  const price = Number(formData.get('price'));
+  const title = formData.get("title") as string;
+  const price = Number(formData.get("price"));
 
   const session = await stripe.checkout.sessions.create({
-    mode: 'payment',
+    mode: "payment",
     line_items: [
       {
         price_data: {
-          currency: 'gbp',
+          currency: "gbp",
           product_data: { name: title },
           unit_amount: price * 100,
         },

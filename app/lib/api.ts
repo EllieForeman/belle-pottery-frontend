@@ -7,9 +7,8 @@ export async function fetchFromCMS(endpoint: string, query = "") {
   try {
     const res = await fetch(url, {
       // next: { revalidate: false },
-      cache: 'no-store', // completely disables caching for LOCAL ONLY
+      cache: "no-store", // completely disables caching for LOCAL ONLY
       next: { revalidate: 0 }, // always fresh in dev, ISR in prod
-
     });
 
     if (!res.ok) {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MenuBar from "./components/menuBar";
+import { CartProvider } from "./context/cartContext";
 
 export const metadata: Metadata = {
   title: "Isabelle Proffitt Pottery",
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans">
-        <MenuBar />
-        {children}
+        <CartProvider>
+          <MenuBar />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

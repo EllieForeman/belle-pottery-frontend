@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { TextDropdown } from "@/app/components/dropdown";
 import { fetchFromCMS } from "@/app/lib/api";
+import AddToCartButton from "@/app/components/addToCartButton";
+import CheckoutButton from "@/app/components/checkoutButton";
 
 type Product = {
   id: number;
@@ -13,10 +15,10 @@ type Product = {
   productImages?: { url: string }[];
   careInstructions?: string;
   deliveryDetails?: string;
+  stock: number;
 };
 
 export const dynamic = "force-dynamic";
-
 
 // **Fetch product from Strapi by ID**
 async function getProductById(id: string): Promise<Product | null> {
@@ -25,9 +27,7 @@ async function getProductById(id: string): Promise<Product | null> {
   return data.data[0];
 }
 
-
 type Params = { id: string; slug: string };
-
 
 export default async function ProductPage({
   params,
@@ -38,7 +38,7 @@ export default async function ProductPage({
 
   const product = await getProductById(id);
   if (!product) return notFound();
-  
+
   const {
     title,
     price,
@@ -97,23 +97,27 @@ export default async function ProductPage({
           {itemDescription || "No description available."}
         </p>
 
-        <form
-          action="/api/checkout_sessions"
-          method="POST"
-          className="mt-12 mb-12"
-        >
+        <form className="mt-12 mb-12">
           <input type="hidden" name="title" value={title} />
-          <input type="hidden" name="description" value={itemDescription || ''} />
+          <input
+            type="hidden"
+            name="description"
+            value={itemDescription || ""}
+          />
           <input type="hidden" name="price" value={price} />
-          <button
-            type="submit"
-            role="link"
-            className="px-6 py-3 bg-[var(--foreground)] text-[var(--background)] border-2 border-transparent rounded transition-all duration-300 hover:bg-[var(--background)] hover:text-[var(--foreground)] hover:border-[var(--foreground)] hover:border-2"
-          >
-            Buy now
-          </button>
-        </form>
 
+          <AddToCartButton
+            product={{
+              id: product.id,
+              title: product.title,
+              price: product.price,
+              image: product.productMainImage?.url,
+              stock: product.stock,
+            }}
+          />
+
+          <CheckoutButton />
+        </form>
 
         {/* Care & Shipping Dropdowns using `TextDropdown` */}
         <TextDropdown
