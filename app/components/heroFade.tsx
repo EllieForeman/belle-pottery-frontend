@@ -33,7 +33,7 @@ export default function HeroFade({ imageUrl }: { imageUrl: string }) {
               src={imageUrl}
               alt="Loading..."
               fill
-              className="object-cover object-[50%_40%] transition-opacity opacity-100 duration-[3s]"
+              className="object-cover md:object-[50%_40%] transition-opacity opacity-100 duration-[3s]"
               onLoad={imageTransition}
             />
           </div>

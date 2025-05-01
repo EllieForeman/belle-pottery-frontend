@@ -19,7 +19,7 @@ export default async function Home() {
         alt="Hero"
         fill
         priority
-        className="object-cover object-[50%_40%]"
+        className="object-cover md:object-[50%_40%]"
       />
     </div>
   )}
