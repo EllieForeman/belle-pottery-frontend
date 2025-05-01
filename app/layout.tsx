@@ -20,20 +20,17 @@ export const metadata: Metadata = {
     "Website for Belle Proffitt's pottery, including home, about, her work and online shop",
 };
 
-
 export default function RootLayout({
-  
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) 
-{
+}>) {
   return (
     <html lang="en" className={`${sourceSans.variable} antialiased`}>
       <body className="font-sans">
         <CartProvider>
-        <MenuBarWrapper />
-        {children}
+          <MenuBarWrapper />
+          {children}
           <Footer />
           <SpeedInsights />
           <Analytics />
@@ -43,5 +40,6 @@ export default function RootLayout({
   );
 }
 
-          {/* <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10"> */}
-
+{
+  /* <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10"> */
+}

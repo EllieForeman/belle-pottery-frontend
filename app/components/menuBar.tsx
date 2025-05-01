@@ -13,11 +13,12 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
   };
 
   return (
-    <header   className={`w-full z-20 py-4 px-6 transition-all duration-300 ${
-      isHome
-        ? "fixed top-0 left-0 w-full z-20 bg-transparent text-background text-bold"
-        : "bg-background text-foreground"
-    }`}
+    <header
+      className={`w-full z-20 py-4 px-6 transition-all duration-300 ${
+        isHome
+          ? "fixed top-0 left-0 w-full z-20 bg-transparent text-background text-bold"
+          : "bg-background text-foreground"
+      }`}
     >
       <button
         className="z-index: 9999 absolute right-0 mr-6 mt-2 md:hidden block focus:outline-none z-20"
@@ -39,7 +40,9 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
         </div>
         {/*  DESKTOP MENU */}
         <div className="flex items-center space-x-8 max-md:hidden">
-          <ul className={`flex space-x-10 font-bagnard ${isHome ? "text-[var(--background)]" : "text-[var(--foreground)]"}`}>
+          <ul
+            className={`flex space-x-10 font-bagnard ${isHome ? "text-[var(--background)]" : "text-[var(--foreground)]"}`}
+          >
             <li>
               <Link className="text-lg" href="/shop">
                 Shop

@@ -6,8 +6,7 @@ export default async function ShopPage() {
 
   return (
     <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
-    <FilterControls products={shopData.data} />;
+      <FilterControls products={shopData.data} />;
     </div>
   );
-};
-
+}
