@@ -17,7 +17,8 @@ export default function CartPage() {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className="p-10">
+    
+    <div className="p-10 w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
       <h1 className={`${lusitana.className} text-2xl pb-6`}>Shopping Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>

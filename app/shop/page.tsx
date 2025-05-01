@@ -4,5 +4,10 @@ import FilterControls from "../components/shopFilters";
 export default async function ShopPage() {
   const shopData = await fetchFromCMS("sale-items");
 
-  return <FilterControls products={shopData.data} />;
-}
+  return (
+    <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
+    <FilterControls products={shopData.data} />;
+    </div>
+  );
+};
+

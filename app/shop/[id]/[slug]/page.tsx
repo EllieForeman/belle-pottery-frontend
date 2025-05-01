@@ -54,7 +54,8 @@ export default async function ProductPage({
   } = product;
 
   return (
-    <div className="container mx-auto sm:py-10 sm:px-4 md:px-10 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-10">
+    <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
+    <div className="mx-auto sm:py-10 sm:px-4 md:px-10 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-10">
       <div className="block md:hidden">
         <div className="mb-4">
           <span className="text-sm">
@@ -157,6 +158,7 @@ export default async function ProductPage({
           </>
         )}
       </div>
+    </div>
     </div>
   );
 }
