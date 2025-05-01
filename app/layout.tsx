@@ -39,7 +39,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-{
-  /* <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10"> */
-}
