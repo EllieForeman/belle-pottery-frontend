@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function LoadingScreen() {
+export default function HeroFade({ imageUrl }: { imageUrl: string }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,11 +29,11 @@ export default function LoadingScreen() {
         <div className="fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-1000 opacity-100">
           <div className="relative w-full h-full">
             <Image
-              src="/loadingPage.png"
+              aria-hidden="true"
+              src={imageUrl}
               alt="Loading..."
               fill
-              style={{ objectFit: "cover" }}
-              className="transition-opacity opacity-100 duration-[3s]"
+              className="object-cover object-[50%_40%] transition-opacity opacity-100 duration-[3s]"
               onLoad={imageTransition}
             />
           </div>

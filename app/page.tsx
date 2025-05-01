@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { fetchFromCMS } from "@/app/lib/api"; // Adjust path if needed
-import MenuBar from "./components/menuBar";
-import Footer from "./components/footer";
-import LoadingScreen from "./components/loadingScreen";
+import HeroFade from "./components/heroFade";
 
 export default async function Home() {
   const res = await fetchFromCMS("large-home-image");
@@ -12,10 +10,11 @@ export default async function Home() {
   console.log('res', res ,imageUrl);
   return (
 <div className="relative min-h-screen flex flex-col">
-  {/* Background Image */}
+  <HeroFade imageUrl={imageUrl} /> 
   {imageUrl && (
     <div className="absolute inset-0 -z-10">
       <Image
+        aria-hidden="true"
         src={imageUrl}
         alt="Hero"
         fill
