@@ -3,8 +3,9 @@ import "./globals.css";
 import MenuBar from "./components/menuBar";
 import { CartProvider } from "./context/cartContext";
 import Footer from "./components/footer";
-
-import { Source_Sans_3, Alegreya_Sans } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+import { Source_Sans_3 } from "next/font/google";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
@@ -33,6 +34,8 @@ export default function RootLayout({
             {children}
           </div>
           <Footer />
+          <SpeedInsights />
+          <Analytics />
         </CartProvider>
       </body>
     </html>
