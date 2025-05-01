@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start">
         {/* Newsletter Signup Section */}
         <div className="w-full md:w-1/2">
-          <h2 className="text-2xl font-semibold  mb-4 font-bagnard">
+          <h2 className="text-2xl mb-4 font-bagnard">
             Sign up to my newsletter
           </h2>
           <p className="text-[1.1rem]  mb-6">
@@ -29,21 +29,21 @@ export default function Footer() {
             <input
               type="text"
               placeholder="First Name"
-              className="bg-[rgba(151,131,120,0.5)] rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)] focus:border-[rgba(151,131,120,1)]"
+              className="bg-transparent rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] border-2 border-[rgba(151,131,120,1)] focus:border-[rgba(121,101,90,1)] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)]"
             />
             <input
               type="text"
               placeholder="Last Name"
-              className="bg-[rgba(151,131,120,0.5)] rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)] focus:border-[rgba(151,131,120,1)]"
+              className="bg-transparent rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] border-2 border-[rgba(151,131,120,1)] focus:border-[rgba(121,101,90,1)] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)]"
             />
             <input
               type="email"
               placeholder="Email Address"
-              className="bg-[rgba(151,131,120,0.5)] rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)] focus:border-[rgba(151,131,120,1)]"
+              className="bg-transparent rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] border-2 border-[rgba(151,131,120,1)] focus:border-[rgba(121,101,90,1)] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)]"
             />
             <button
               type="submit"
-              className="text-lg text-left underline underline-offset-4 font-semibold px-6 py-2"
+              className="w-40 px-6 py-2 rounded-lg bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)] hover:underline hover:underline-offset-4"
             >
               Sign up
             </button>
@@ -51,8 +51,8 @@ export default function Footer() {
         </div>
 
         {/* Links Section */}
-        <div className="w-full md:w-1/2 mt-8 md:mt-0 pl-60">
-          <h2 className="text-lg font-semibold  pb-2">Links</h2>
+        <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-60">
+          <h2 className="text-2xl mb-4 font-bagnard">Links</h2>
           <Link
             href="/shop"
             className="text-[1.1rem] block  hover:underline pb-2"
@@ -60,16 +60,10 @@ export default function Footer() {
             Shop
           </Link>
           <Link
-            href="/faq"
+            href="/about"
             className="text-[1.1rem] block  hover:underline pb-2"
           >
-            FAQ
-          </Link>
-          <Link
-            href="/info"
-            className="text-[1.1rem] block  hover:underline pb-2"
-          >
-            Info
+            About
           </Link>
           <Link
             href="/gallery"
@@ -78,17 +72,27 @@ export default function Footer() {
             Gallery
           </Link>
           <Link
-            href="/instagram"
+            href="/faq"
+            className="text-[1.1rem] block  hover:underline pb-2"
+          >
+            FAQ
+          </Link>
+          <a
+            href="https://www.instagram.com/belle.pots/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[1.1rem] block  hover:underline pb-2"
           >
             Instagram
-          </Link>
-          <Link
-            href="/contact"
+          </a>
+          <a
+            href="mailto:hello@belleproffitt.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[1.1rem] block  hover:underline pb-2"
           >
             Contact
-          </Link>
+          </a>
         </div>
       </div>
 

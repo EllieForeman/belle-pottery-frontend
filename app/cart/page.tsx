@@ -50,7 +50,9 @@ export default function CartPage() {
                     {item.title}
                   </div>
 
-                  <div className={`${lusitana.className} text-xl flex flex-col justify-start sm:items-end`}>
+                  <div
+                    className={`${lusitana.className} text-xl flex flex-col justify-start sm:items-end`}
+                  >
                     quantity: {item.quantity}
                   </div>
                   <div
@@ -64,13 +66,13 @@ export default function CartPage() {
           </ul>
           <div className="max-w-[600px] pt-6 mt-6 flex justify-between">
             <span className={`${lusitana.className} text-xl`}>Subtotal</span>
-            <span className={`${lusitana.className} text-xl`}>£{total.toFixed(2)}</span>
+            <span className={`${lusitana.className} text-xl`}>
+              £{total.toFixed(2)}
+            </span>
           </div>
           <div className="pt-8 max-w-[600px] flex justify-end">
-            <CheckoutButton /> 
-          </div>         
-
-          
+            <CheckoutButton />
+          </div>
         </>
       )}
     </div>

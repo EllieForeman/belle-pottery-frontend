@@ -4,8 +4,7 @@ export async function fetchFromCMS(endpoint: string, query = "") {
   const url = `${BASE_URL}/${endpoint}?populate=*${query ? `&${query}` : ""}`;
 
   try {
-    const res = await fetch(url, {
-    });
+    const res = await fetch(url, {});
 
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);

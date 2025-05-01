@@ -4,6 +4,15 @@ import MenuBar from "./components/menuBar";
 import { CartProvider } from "./context/cartContext";
 import Footer from "./components/footer";
 
+import { Source_Sans_3, Alegreya_Sans } from "next/font/google";
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--source-sans",
+});
+
 export const metadata: Metadata = {
   title: "Isabelle Proffitt Pottery",
   description:
@@ -16,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sourceSans.variable} antialiased`}>
       <body className="font-sans">
         <CartProvider>
           <MenuBar />

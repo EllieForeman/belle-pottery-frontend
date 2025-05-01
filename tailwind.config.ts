@@ -10,7 +10,13 @@ export default {
     extend: {
       fontFamily: {
         bagnard: ["Bagnard", "sans-serif"],
-        sans: ["Lucida Grande", "Arial", "sans-serif"],
+        sans: [
+          "Lucida Grande",
+          "var(--source-sans)",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif",
+        ],
       },
       colors: {
         background: "var(--background)",

@@ -36,6 +36,7 @@ interface ExhibitionsDropdownProps {
 interface TextDropdownProps {
   title: string;
   text: string;
+  open: boolean;
 }
 
 export function ListDropdown({ title, items }: ListDropdownProps) {
@@ -129,8 +130,8 @@ export function ExhibitionsDropdown({
 }
 
 // Dropdown 3: Commissions, Enquiries, and Stockists
-export function TextDropdown({ title, text }: TextDropdownProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export function TextDropdown({ title, text, open }: TextDropdownProps) {
+  const [isOpen, setIsOpen] = useState(open);
   return (
     <details
       className="group border-b border-black py-5 w-full"

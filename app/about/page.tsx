@@ -30,7 +30,7 @@ export default async function AboutPage() {
   const teachingText = aboutInfo.teachingText;
   const stockistsText = aboutInfo.stockistText;
   return (
-    <div>
+    <div className="w-full sm:w-[95%] max-w-[1500px] mx-auto px-4 sm:px-2 pb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-8 sm:mb-12">
         {/* About Section */}
         <div className="order-2 md:order-1 mt-4 sm:mt-0">
@@ -43,7 +43,7 @@ export default async function AboutPage() {
         </div>
 
         {/* Photo */}
-        <div className="order-1 md:order-2 relative w-full aspect-[3/4]">
+        <div className="order-1 md:order-2 relative w-full h-full">
           <Image
             src={profileImage}
             alt="Profile Photo"
@@ -63,13 +63,21 @@ export default async function AboutPage() {
               Contact & Enquiries
             </h2>
             {commissionsText && (
-              <TextDropdown title="Commissions" text={commissionsText} />
+              <TextDropdown
+                title="Commissions"
+                text={commissionsText}
+                open={false}
+              />
             )}
             {teachingText && (
-              <TextDropdown title="Teaching" text={teachingText} />
+              <TextDropdown title="Teaching" text={teachingText} open={false} />
             )}
             {stockistsText && (
-              <RichTextDropdown title="Stockists" text={stockistsText} />
+              <RichTextDropdown
+                title="Stockists"
+                text={stockistsText}
+                open={false}
+              />
             )}
           </div>
         )}

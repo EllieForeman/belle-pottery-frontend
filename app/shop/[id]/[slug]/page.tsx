@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { TextDropdown } from "@/app/components/dropdown";
 import { fetchFromCMS } from "@/app/lib/api";
 import AddToCartButton from "@/app/components/addToCartButton";
 import CheckoutButton from "@/app/components/checkoutButton";
@@ -17,6 +16,7 @@ type Product = {
   careInstructions?: string;
   deliveryDetails?: string;
   stock: number;
+  filter: string;
 };
 
 export const dynamic = "force-dynamic";
@@ -24,6 +24,7 @@ export const dynamic = "force-dynamic";
 // **Fetch product from Strapi by ID**
 async function getProductById(id: string): Promise<Product | null> {
   const data = await fetchFromCMS("sale-items", `filters[id][$eq]=${id}`);
+
   if (!data || !data.data || data.data.length === 0) return null;
   return data.data[0];
 }
@@ -38,6 +39,7 @@ export default async function ProductPage({
   const { id, slug } = await params;
 
   const product = await getProductById(id);
+
   if (!product) return notFound();
 
   const {
@@ -48,6 +50,7 @@ export default async function ProductPage({
     productImages,
     careInstructions,
     deliveryDetails,
+    filter,
   } = product;
 
   return (
@@ -61,10 +64,10 @@ export default async function ProductPage({
             &gt; {title}
           </span>
         </div>
-        <MobileImageSlider 
-          productMainImage={productMainImage} 
-          productImages={productImages} 
-          title={title} 
+        <MobileImageSlider
+          productMainImage={productMainImage}
+          productImages={productImages}
+          title={title}
         />
       </div>
 
@@ -76,8 +79,8 @@ export default async function ProductPage({
             <Image
               src={productMainImage.url}
               alt={title}
-              width={700}
-              height={600}
+              width={600}
+              height={800}
               className="object-cover w-full h-[75vh]"
             />
           )}
@@ -90,8 +93,8 @@ export default async function ProductPage({
                 key={index}
                 src={img.url}
                 alt={`Product Image ${index + 1}`}
-                width={700}
-                height={600}
+                width={600}
+                height={800}
                 className="object-cover w-full h-[75vh]"
               />
             ))}
@@ -107,7 +110,7 @@ export default async function ProductPage({
           &gt; {title}
         </span>
 
-        <h1 className="text-xl sm:mt-5 mb-6 font-sans">{title}</h1>
+        <h1 className="text-xl sm:mt-5 mb-6">{title}</h1>
         <p className="text-xl mt-2 mb-4 sm:mb-12">£{price}</p>
 
         <p className="sm:mt-4 text-lg">
@@ -136,21 +139,23 @@ export default async function ProductPage({
           <CheckoutButton />
         </form>
 
-        {/* Care & Shipping Dropdowns using `TextDropdown` */}
-        <TextDropdown
-          title="Care"
-          text={
-            careInstructions ||
-            "Dishwasher safe, though hand-washing is recommended."
-          }
-        />
-        <TextDropdown
-          title="Shipping"
-          text={
-            deliveryDetails ||
-            "Orders will be dispatched within 2-4 working days. Please ensure your delivery address is correct when checking out."
-          }
-        />
+        {deliveryDetails && (
+          <>
+            <h2 className="text-lg leading-spacey mb-2">Shipping</h2>
+            <p>
+              {deliveryDetails ||
+                "Orders will be dispatched within 2-4 working days. Please ensure your delivery address is correct when checking out."}
+            </p>
+          </>
+        )}
+        {careInstructions && (
+          <>
+            <h2 className="text-lg leading-spacey mb-2 mt-6">
+              Care Instructions
+            </h2>
+            <p>{careInstructions}</p>
+          </>
+        )}
       </div>
     </div>
   );
