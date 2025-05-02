@@ -42,9 +42,9 @@ export async function POST(req: Request) {
       for (const item of lineItems) {
         if (!item.price || typeof item.price === "string") continue;
         const product = item.price.product;
-      
+
         if (typeof product === "string" || !("metadata" in product)) continue;
-      
+
         const productId = product.metadata.productId;
         const currentStock = await getStockFromCMS(productId);
         await reduceProductStock(Number(productId), currentStock);
