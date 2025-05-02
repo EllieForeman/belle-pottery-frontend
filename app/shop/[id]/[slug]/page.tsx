@@ -21,10 +21,9 @@ type Product = {
 
 export const dynamic = "force-dynamic";
 
-// **Fetch product from Strapi by ID**
 async function getProductById(id: string): Promise<Product | null> {
   const data = await fetchFromCMS("sale-items", `filters[id][$eq]=${id}`);
-
+  console.log("data", data);
   if (!data || !data.data || data.data.length === 0) return null;
   return data.data[0];
 }
@@ -39,6 +38,11 @@ export default async function ProductPage({
   const { id, slug } = await params;
 
   const product = await getProductById(id);
+  console.log(
+    "Product ID passed to AddToCartButton:",
+    product?.title,
+    product?.id,
+  );
 
   if (!product) return notFound();
 
