@@ -1,30 +1,54 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
+import { fetchFromCMS } from "@/app/lib/api";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2023-10-16" as any,
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: Request) {
-  const formData = await req.formData();
-  const title = formData.get("title") as string;
-  const price = Number(formData.get("price"));
+  try {
+    const body = await req.json();
+    const cart = body.cart;
+    // Validate items against CMS
+    const line_items = await Promise.all(
+      cart.map(async (item: any) => {
+        const res = await fetchFromCMS(
+          "sale-items",
+          `filters[id][$eq]=${item.id}`,
+        );
+        const cmsProduct = res?.data?.[0];
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    line_items: [
-      {
-        price_data: {
-          currency: "gbp",
-          product_data: { name: title },
-          unit_amount: price * 100,
-        },
-        quantity: 1,
-      },
-    ],
-    success_url: `${process.env.NEXT_PUBLIC_URL}/success`,
-    cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
-  });
+        if (!cmsProduct) {
+          throw new Error(`Product ${item.id} no longer available`);
+        }
 
-  return NextResponse.redirect(session.url!, 303);
+        return {
+          price_data: {
+            currency: "gbp",
+            product_data: {
+              name: cmsProduct.title,
+              images: item.image ? [item.image] : [],
+            },
+            unit_amount: cmsProduct.price * 100,
+          },
+          quantity: 1,
+        };
+      }),
+    );
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      payment_method_types: ["card"],
+      line_items,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart`,
+    });
+
+    return NextResponse.json({ url: session.url });
+  } catch (err) {
+    console.error("Checkout session error:", err);
+    return NextResponse.json(
+      { error: "Failed to create session" },
+      { status: 500 },
+    );
+  }
 }

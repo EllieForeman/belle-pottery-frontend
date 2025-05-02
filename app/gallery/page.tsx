@@ -4,7 +4,6 @@ import { fetchFromCMS } from "../lib/api";
 const galleryImages = await fetchFromCMS("image-galley");
 
 export default function GalleryPage() {
-  console.log(galleryImages.data.Galler, "galleryImages.data.Galler");
   return (
     <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-12">

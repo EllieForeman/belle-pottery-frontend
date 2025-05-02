@@ -27,15 +27,15 @@ export default function HeroFade({ imageUrl }: { imageUrl: string }) {
     <>
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center z-50 transition-opacity duration-1000 opacity-100">
-        <Image
-        aria-hidden="true"
-        src={imageUrl}
-        alt="Loading..."
-        fill
-        className="object-cover object-[50%_40%] transition-opacity opacity-100 duration-[3s]"
-        onLoad={imageTransition}
-      />
-      </div>
+          <Image
+            aria-hidden="true"
+            src={imageUrl}
+            alt="Loading..."
+            fill
+            className="object-cover object-[50%_40%] transition-opacity opacity-100 duration-[3s]"
+            onLoad={imageTransition}
+          />
+        </div>
       )}
     </>
   );

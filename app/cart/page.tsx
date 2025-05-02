@@ -70,7 +70,7 @@ export default function CartPage() {
               £{total.toFixed(2)}
             </span>
           </div>
-          <div className="pt-8 max-w-[600px] flex justify-end">
+          <div className="pt-8 max-w-[600px] flex justify-center md:justify-end">
             <CheckoutButton />
           </div>
         </>

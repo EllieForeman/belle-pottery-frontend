@@ -8,6 +8,7 @@ export default function CheckoutButton() {
   const handleCheckout = async () => {
     if (cart.length === 0) return;
 
+    console.log("cart", JSON.stringify({ cart }));
     const res = await fetch("/api/checkout_sessions", {
       method: "POST",
       headers: {
