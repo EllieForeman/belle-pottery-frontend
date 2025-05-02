@@ -13,6 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: Request) {
+  
   try {
     const rawBody = await req.text();
     const sig = req.headers.get("stripe-signature") as string;
@@ -46,7 +47,12 @@ export async function POST(req: Request) {
         if (typeof product === "string" || !("metadata" in product)) continue;
 
         const productId = product.metadata.productId;
+        console.log("Webhook - productId from Stripe metadata:", productId);
+
+        console.log(`Getting stock for product ${productId}...`);
         const currentStock = await getStockFromCMS(productId);
+        console.log(`Current stock for product ${productId}:`, currentStock);
+
         await reduceProductStock(Number(productId), currentStock);
       }
     }
