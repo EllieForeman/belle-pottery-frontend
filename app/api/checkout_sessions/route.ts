@@ -27,6 +27,9 @@ export async function POST(req: Request) {
             product_data: {
               name: cmsProduct.title,
               images: item.image ? [item.image] : [],
+              metadata: {
+                productId: cmsProduct.id.toString(), 
+              },
             },
             unit_amount: cmsProduct.price * 100,
           },
