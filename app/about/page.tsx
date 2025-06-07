@@ -30,11 +30,11 @@ export default async function AboutPage() {
   const teachingText = aboutInfo.teachingText;
   const stockistsText = aboutInfo.stockistText;
   return (
-    <div className="w-full sm:w-[95%] max-w-[1450px] mx-auto px-4 sm:px-2 pb-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-8 sm:mb-12">
+<div className="w-full max-w-[1450px] mx-auto px-[7%] md:px-6 pb-10">
+  <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-8 sm:mb-12">
         {/* About Section */}
         <div className="order-2 md:order-1 mt-4 sm:mt-0">
-          <p className="text-lg leading-spacey font-bold whitespace-pre-line md:mt-8 md:mb-12">
+          <p className="text-2xl whitespace-pre-line mb-10 md:mt-16 md:mb-12 font-bagnard">
             {bioBoldHeadline}
           </p>
           <p className="mt-4 text-lg leading-spacey whitespace-pre-line">
@@ -56,7 +56,7 @@ export default async function AboutPage() {
       </div>
 
       {/* Dropdown and Photo Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full py-8 md:py-12">
         {(commissionsText || teachingText || stockistsText) && (
           <div>
             <h2 className="text-2xl sm:mt-20 md:mt-0 underline decoration-1 mb-4 underline-offset-4">
@@ -86,7 +86,7 @@ export default async function AboutPage() {
             exhibitions?.length > 0 ||
             collections?.length > 0 ||
             teaching?.length > 0) && (
-            <h2 className="text-2xl underline mb-4 underline-offset-4 decoration-1 mt-8 md:mt-0">
+            <h2 className="text-2xl underline mb-4 underline-offset-4 decoration-1 mt-12 md:mt-0">
               CV
             </h2>
           )}

@@ -56,7 +56,7 @@ export function ListDropdown({ title, items }: ListDropdownProps) {
           {items.map((item, index) => (
             <li className="p-1" key={index}>
               {item.title}
-              {item.location ? `, ${item.location}` : ""}
+              {item.location ? `, ${item.location} ` : ""}
               {item.dateFrom}
               {item.dateTo ? ` - ${item.dateTo}` : ""}
             </li>

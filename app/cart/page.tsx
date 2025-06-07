@@ -5,11 +5,11 @@ import { useCart } from "../context/cartContext";
 import { Lusitana } from "next/font/google";
 import CheckoutButton from "../components/checkoutButton";
 
-const lusitana = Lusitana({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
+// const lusitana = Lusitana({
+//   weight: "400",
+//   subsets: ["latin"],
+//   display: "swap",
+// });
 
 export default function CartPage() {
   const { cart, removeFromCart } = useCart();
@@ -18,7 +18,7 @@ export default function CartPage() {
 
   return (
     <div className="p-10 w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
-      <h1 className={`${lusitana.className} text-2xl pb-6`}>Shopping Cart</h1>
+      <h1 className={`text-2xl pb-6`}>Shopping Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
@@ -46,17 +46,17 @@ export default function CartPage() {
                     />
                   </div>
 
-                  <div className={`${lusitana.className} text-xl`}>
+                  <div className={`text-xl`}>
                     {item.title}
                   </div>
 
                   <div
-                    className={`${lusitana.className} text-xl flex flex-col justify-start sm:items-end`}
+                    className={`text-xl flex flex-col justify-start sm:items-end`}
                   >
                     quantity: {item.quantity}
                   </div>
                   <div
-                    className={`${lusitana.className} text-xl flex flex-col justify-start sm:items-end`}
+                    className={`text-xl flex flex-col justify-start sm:items-end`}
                   >
                     £{item.price}
                   </div>
@@ -65,8 +65,8 @@ export default function CartPage() {
             ))}
           </ul>
           <div className="max-w-[600px] pt-6 mt-6 flex justify-between">
-            <span className={`${lusitana.className} text-xl`}>Subtotal</span>
-            <span className={`${lusitana.className} text-xl`}>
+            <span className={`text-xl`}>Subtotal</span>
+            <span className={`text-xl`}>
               £{total.toFixed(2)}
             </span>
           </div>

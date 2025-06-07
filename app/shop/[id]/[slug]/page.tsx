@@ -23,10 +23,11 @@ export const dynamic = "force-dynamic";
 
 async function getProductById(id: string): Promise<Product | null> {
   const data = await fetchFromCMS("sale-items", `filters[id][$eq]=${id}`);
-  console.log("data", data);
+  console.log('data', data);
   if (!data || !data.data || data.data.length === 0) return null;
   return data.data[0];
 }
+
 
 type Params = { id: string; slug: string };
 
@@ -38,11 +39,7 @@ export default async function ProductPage({
   const { id, slug } = await params;
 
   const product = await getProductById(id);
-  console.log(
-    "Product ID passed to AddToCartButton:",
-    product?.title,
-    product?.id,
-  );
+  console.log("Product ID passed to AddToCartButton:", product?.title, product?.id);
 
   if (!product) return notFound();
 
@@ -58,8 +55,8 @@ export default async function ProductPage({
   } = product;
 
   return (
-    <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
-      <div className="mx-auto sm:py-10 sm:px-4 md:px-10 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-10">
+    <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10 xl:pl-[0px]">
+      <div className="mx-auto sm:py-10 lg:py-0 sm:px-4 md:px-10 grid grid-cols-1 md:grid-cols-[60%_40%] lg:grid-cols-[50%_50%] xl:grid-cols-[40%_60%] gap-10">
         <div className="block md:hidden">
           <div className="mb-4">
             <span className="text-sm">
@@ -118,7 +115,7 @@ export default async function ProductPage({
           <h1 className="text-xl sm:mt-5 mb-6">{title}</h1>
           <p className="text-xl mt-2 mb-4 sm:mb-12">£{price}</p>
 
-          <p className="sm:mt-4 text-lg">
+          <p className="sm:mt-4 text-md">
             {itemDescription || "No description available."}
           </p>
 

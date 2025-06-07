@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="relative  pt-12 pb-6 px-6">
       <div className="absolute inset-0">
         <Image
-          src="/footer.jpg"
+          src="/banner.png"
           alt="Footer Background"
           priority
           fill
@@ -92,7 +92,7 @@ export default function Footer() {
 
       {/* Copyright Section */}
       <div className="relative mt-8 text-center text-xs">
-        &copy; copyright Isabelle Proffitt 2025
+        &copy; Copyright Isabelle Proffitt 2025
       </div>
     </footer>
   );
