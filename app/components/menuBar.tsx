@@ -41,25 +41,25 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
         {/*  DESKTOP MENU */}
         <div className="flex items-center space-x-8 max-md:hidden">
           <ul
-            className={`flex space-x-10 font-bagnard ${isHome ? "text-[var(--background)]" : "text-[var(--foreground)]"}`}
+            className={`pb-8 flex space-x-10 font-bagnard ${isHome ? "text-[var(--background)]" : "text-[var(--foreground)]"}`}
           >
             <li>
-              <Link className="text-lg" href="/shop">
+              <Link className="text-xl hover:underline underline-offset-4" href="/shop">
                 Shop
               </Link>
             </li>
             <li>
-              <Link className="text-lg" href="/about">
+              <Link className="text-xl hover:underline underline-offset-4" href="/about">
                 About
               </Link>
             </li>
             <li>
-              <Link className="text-lg" href="/gallery">
+              <Link className="text-xl hover:underline underline-offset-4" href="/gallery">
                 Gallery
               </Link>
             </li>
             <li>
-              <Link className="text-lg" href="/cart">
+              <Link className="text-xl hover:underline underline-offset-4" href="/cart">
                 Basket
                 {itemCount > 0 && <span>: {itemCount}</span>}
               </Link>

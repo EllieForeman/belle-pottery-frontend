@@ -30,7 +30,7 @@ export default async function AboutPage() {
   const teachingText = aboutInfo.teachingText;
   const stockistsText = aboutInfo.stockistText;
   return (
-    <div className="w-full sm:w-[95%] max-w-[1500px] mx-auto px-4 sm:px-2 pb-10">
+    <div className="w-full sm:w-[95%] max-w-[1450px] mx-auto px-4 sm:px-2 pb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-8 sm:mb-12">
         {/* About Section */}
         <div className="order-2 md:order-1 mt-4 sm:mt-0">
