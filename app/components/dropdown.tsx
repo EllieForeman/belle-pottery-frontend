@@ -52,12 +52,12 @@ export function ListDropdown({ title, items }: ListDropdownProps) {
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
       <div className="mt-4  text-sm pl-4">
-        <ul className="list-disc mt-4 text-lg leading-spacey">
+        <ul className="text-base list-disc mt-4 leading-spacey">
           {items.map((item, index) => (
             <li className="p-1" key={index}>
-              {item.title}
-              {item.location ? `, ${item.location} ` : ""}
-              {item.dateFrom}
+              {item.title.trim()}
+              {item.location ? `, ${item.location.trim()} ` : ""}
+              {' ' + item.dateFrom}
               {item.dateTo ? ` - ${item.dateTo}` : ""}
             </li>
           ))}
@@ -104,7 +104,7 @@ export function ExhibitionsDropdown({
               .map((year) => (
                 <div key={year}>
                   <h4 className="text-lg mt-6">{year}</h4>
-                  <ul className="list-disc pl-4 text-lg leading-spacey">
+                  <ul className="text-base list-disc pl-4 leading-spacey">
                     {groupedExhibitions[year].map((item) => (
                       <li key={item.id}>
                         {item.title}, {item.place}
@@ -116,7 +116,7 @@ export function ExhibitionsDropdown({
           <h4 className="text-lg mt-6 mb-3 underline underline-offset-4">
             Collections
           </h4>
-          <ul className="text-lg leading-spacey">
+          <ul className="text-base leading-spacey">
             {collections?.map((item, index) => (
               <li key={index}>
                 {item.title}, {item.place}
@@ -143,7 +143,7 @@ export function TextDropdown({ title, text, open }: TextDropdownProps) {
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
       <div>
-        {isOpen && <p className="mt-8 mb-4 text-lg leading-spacey">{text}</p>}
+        {isOpen && <p className="mt-4 mb-4 leading-spacey">{text}</p>}
       </div>
     </details>
   );
@@ -162,7 +162,7 @@ export function RichTextDropdown({ title, text }: TextDropdownProps) {
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
-      <div className="mt-4 text-lg leading-spacey">
+      <div className="mt-4 leading-spacey">
         {isOpen && (
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}

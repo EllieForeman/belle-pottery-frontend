@@ -29,7 +29,7 @@ export default function CheckoutButton() {
   return (
     <button
       onClick={handleCheckout}
-      className="w-80 mt-4 px-6 py-3 border-2 rounded bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)] hover:underline hover:underline-offset-4"
+      className="w-64 mt-4 px-6 py-3 border-2 rounded bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)] hover:underline hover:underline-offset-4"
     >
       Checkout
     </button>

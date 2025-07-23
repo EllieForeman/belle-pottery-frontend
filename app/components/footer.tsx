@@ -91,7 +91,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright Section */}
-      <div className="relative mt-8 text-center text-xs">
+      <div className="relative text-center text-xs">
         &copy; Copyright Isabelle Proffitt 2025
       </div>
     </footer>

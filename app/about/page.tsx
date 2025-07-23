@@ -30,20 +30,20 @@ export default async function AboutPage() {
   const teachingText = aboutInfo.teachingText;
   const stockistsText = aboutInfo.stockistText;
   return (
-<div className="w-full max-w-[1450px] mx-auto px-[7%] md:px-6 pb-10">
-  <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-16 w-full mb-8 sm:mb-12">
+<div className="w-full max-w-[1350px] mx-auto px-[7%] md:px-6 pb-10">
+  <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-24 w-full mb-8 sm:mb-12">
         {/* About Section */}
         <div className="order-2 md:order-1 mt-4 sm:mt-0">
-          <p className="text-2xl whitespace-pre-line mb-10 md:mt-16 md:mb-12 font-bagnard">
+          <p className="text-xl whitespace-pre-line mb-10 md:mt-8 md:mb-12 font-bagnard">
             {bioBoldHeadline}
           </p>
-          <p className="mt-4 text-lg leading-spacey whitespace-pre-line">
+          <p className="mt-4 leading-spacey whitespace-pre-line">
             {bioDescription}
           </p>
         </div>
 
         {/* Photo */}
-        <div className="order-1 md:order-2 relative w-full h-full">
+        <div className="order-1 md:order-2 relative w-full h-full md:mt-8">
           <Image
             src={profileImage}
             alt="Profile Photo"

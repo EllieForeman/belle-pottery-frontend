@@ -39,20 +39,3 @@ h1 {
   width: 6px;
 }
 
-.image-scrollbar::-webkit-scrollbar-track {
-  padding: 5px 0;
-}
-.image-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--foreground);
-  border-radius: 10px;
-}
-
-/* Move scrollbar to the left */
-.image-scrollbar {
-  direction: rtl;
-  overflow-y: auto;
-}
-
-.image-scrollbar > * {
-  direction: ltr;
-}

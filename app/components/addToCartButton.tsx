@@ -43,7 +43,7 @@ export default function AddToCartButton({ product }: Props) {
       <button
         onClick={handleClick}
         disabled={outOfStock || isMaxedOut}
-        className={`w-80 px-6 py-3 border-2 rounded transition-all duration-300 ${
+        className={`w-64 px-6 py-3 border-2 rounded transition-all duration-300 ${
           outOfStock || isMaxedOut
             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
             : "hover:bg-[var(--foreground)] hover:text-[var(--background)] bg-[var(--background)] text-[var(--foreground)] border-[var(--foreground)]"

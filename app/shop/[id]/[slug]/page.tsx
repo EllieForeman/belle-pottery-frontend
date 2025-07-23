@@ -1,6 +1,9 @@
+'use client';
+
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { fetchFromCMS } from "@/app/lib/api";
 import AddToCartButton from "@/app/components/addToCartButton";
 import CheckoutButton from "@/app/components/checkoutButton";
@@ -23,25 +26,71 @@ export const dynamic = "force-dynamic";
 
 async function getProductById(id: string): Promise<Product | null> {
   const data = await fetchFromCMS("sale-items", `filters[id][$eq]=${id}`);
-  console.log('data', data);
   if (!data || !data.data || data.data.length === 0) return null;
   return data.data[0];
 }
 
-
 type Params = { id: string; slug: string };
 
-export default async function ProductPage({
+export default function ProductPage({
   params,
 }: {
   params: Promise<{ id: string; slug: string }>;
 }) {
-  const { id, slug } = await params;
+  const imageScrollRef = useRef<HTMLDivElement>(null);
 
-  const product = await getProductById(id);
-  console.log("Product ID passed to AddToCartButton:", product?.title, product?.id);
+useEffect(() => {
+  const handleWheel = (e: WheelEvent) => {
+    const imageScroll = imageScrollRef.current;
+    if (!imageScroll) return;
 
-  if (!product) return notFound();
+    const scrollingDown = e.deltaY > 0;
+    const scrollingUp = e.deltaY < 0;
+
+    const imageAtBottom =
+      imageScroll.scrollTop + imageScroll.clientHeight >= imageScroll.scrollHeight;
+    const imageAtTop = imageScroll.scrollTop <= 0;
+
+    const pageScrolledToBottom =
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 1;
+
+    const pageScrolledToTop = window.scrollY <= 0;
+
+    const shouldScrollImageColumn =
+      (scrollingDown && !imageAtBottom) ||
+      (scrollingUp && pageScrolledToTop && !imageAtTop);
+
+    if (shouldScrollImageColumn) {
+      e.preventDefault();
+      imageScroll.scrollTop += e.deltaY;
+    }
+  };
+
+  window.addEventListener("wheel", handleWheel, { passive: false });
+  return () => {
+    window.removeEventListener("wheel", handleWheel);
+  };
+}, []);
+
+
+  const [productData, setProductData] = useState<Product | null>(null);
+
+  useEffect(() => {
+    params.then(async ({ id }) => {
+      const data = await getProductById(id);
+      setProductData(data);
+    });
+  }, [params]);
+
+  if (!productData) {
+  return (
+    <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 xl:pl-[0px] pb-6">
+      <div className="h-[88vh] w-full flex items-center justify-center animate-pulse rounded">
+        <p>pots loading...</p>
+      </div>
+    </div>
+  );
+}
 
   const {
     title,
@@ -51,13 +100,16 @@ export default async function ProductPage({
     productImages,
     careInstructions,
     deliveryDetails,
-    filter,
-  } = product;
+  } = productData;
 
+  
   return (
-    <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10 xl:pl-[0px]">
-      <div className="mx-auto sm:py-10 lg:py-0 sm:px-4 md:px-10 grid grid-cols-1 md:grid-cols-[60%_40%] lg:grid-cols-[50%_50%] xl:grid-cols-[40%_60%] gap-10">
-        <div className="block md:hidden">
+    
+    <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 xl:pl-[0px] pb-6">
+      <div className="mx-auto sm:py-10 md:py-0 grid grid-cols-1 md:grid-cols-[60%_40%] lg:grid-cols-[60%_50%] xl:grid-cols-[50%_50%] gap-4 lg:gap-10">
+
+        {/* Mobile Slider */}
+        <div className="block lg:hidden">
           <div className="mb-4">
             <span className="text-sm">
               <Link href="/shop" className="hover:underline">
@@ -73,39 +125,48 @@ export default async function ProductPage({
           />
         </div>
 
-        {/* Left: Scrollable Image Column */}
-        <div className="hidden md:block h-[80vh] overflow-y-auto no-scrollbar">
+        <div
+          ref={imageScrollRef}
+          className="relative hidden lg:block h-[88vh] overflow-y-scroll"
+        >
           <div className="flex flex-col gap-4">
-            {/* Main Image */}
+            {/* Main image – intentionally shorter */}
             {productMainImage && (
-              <Image
-                src={productMainImage.url}
-                alt={title}
-                width={600}
-                height={800}
-                className="object-cover w-full h-[75vh]"
-              />
+              <div className="w-full relative max-h-[80vh] overflow-hidden">
+                <Image
+                  src={productMainImage.url}
+                  alt={title}
+                  width={800}
+                  height={800}
+                  className="w-full h-auto"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  priority
+                />
+              </div>
             )}
 
-            {/* Additional Product Images */}
-            {productImages &&
-              productImages.length > 0 &&
-              productImages.map((img, index) => (
+            {/* Additional images – full natural aspect ratio */}
+            {productImages?.map((img, index) => (
+              <div key={index} className="w-full relative">
                 <Image
-                  key={index}
                   src={img.url}
                   alt={`Product Image ${index + 1}`}
-                  width={600}
+                  width={800}
                   height={800}
-                  className="object-cover w-full h-[75vh]"
+                  className="w-full h-auto"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  loading="lazy"
                 />
-              ))}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right: Product Details */}
-        <div className="sticky top-20">
-          <span className="text-sm hidden md:block">
+
+
+        {/* Product Details */}
+        <div className="sticky top-20 max-w-[520px]">
+          <span className="text-sm hidden lg:block">
             <Link href="/shop" className="hover:underline">
               Shop
             </Link>{" "}
@@ -120,41 +181,27 @@ export default async function ProductPage({
           </p>
 
           <form className="mt-12 mb-12">
-            <input type="hidden" name="title" value={title} />
-            <input
-              type="hidden"
-              name="description"
-              value={itemDescription || ""}
-            />
-            <input type="hidden" name="price" value={price} />
-
             <AddToCartButton
               product={{
-                id: product.id,
-                title: product.title,
-                price: product.price,
-                image: product.productMainImage?.url,
-                stock: product.stock,
+                id: productData.id,
+                title: productData.title,
+                price: productData.price,
+                image: productData.productMainImage?.url,
+                stock: productData.stock,
               }}
             />
-
             <CheckoutButton />
           </form>
 
           {deliveryDetails && (
             <>
               <h2 className="text-lg leading-spacey mb-2">Shipping</h2>
-              <p>
-                {deliveryDetails ||
-                  "Orders will be dispatched within 2-4 working days. Please ensure your delivery address is correct when checking out."}
-              </p>
+              <p>{deliveryDetails}</p>
             </>
           )}
           {careInstructions && (
             <>
-              <h2 className="text-lg leading-spacey mb-2 mt-6">
-                Care Instructions
-              </h2>
+              <h2 className="text-lg leading-spacey mb-2 mt-6">Care Instructions</h2>
               <p>{careInstructions}</p>
             </>
           )}
