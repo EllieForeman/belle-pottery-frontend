@@ -1,0 +1,29 @@
+.yarl__icon {
+  color: #45381d !important;
+}
+
+.yarl__button {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.yarl__button:focus,
+.yarl__button:focus-visible,
+.yarl__button:hover {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.yarl__slide_captions_container {
+  background-color: rgba(238, 236, 232, 0.8) !important;
+}
+
+.yarl__slide_title {
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #45381d !important;
+  font-family: "Lucida Grande", sans-serif !important;
+}

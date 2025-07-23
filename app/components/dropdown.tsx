@@ -57,7 +57,7 @@ export function ListDropdown({ title, items }: ListDropdownProps) {
             <li className="p-1" key={index}>
               {item.title.trim()}
               {item.location ? `, ${item.location.trim()} ` : ""}
-              {' ' + item.dateFrom}
+              {" " + item.dateFrom}
               {item.dateTo ? ` - ${item.dateTo}` : ""}
             </li>
           ))}
@@ -142,9 +142,7 @@ export function TextDropdown({ title, text, open }: TextDropdownProps) {
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
-      <div>
-        {isOpen && <p className="mt-4 mb-4 leading-spacey">{text}</p>}
-      </div>
+      <div>{isOpen && <p className="mt-4 mb-4 leading-spacey">{text}</p>}</div>
     </details>
   );
 }
@@ -162,7 +160,7 @@ export function RichTextDropdown({ title, text }: TextDropdownProps) {
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
-      <div className="mt-4 leading-spacey">
+      <div className="mt-4 leading-spacey prose text-[#45381d] [&_strong]:text-[#45381d] [&_b]:text-[#45381d]">
         {isOpen && (
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
@@ -172,7 +170,7 @@ export function RichTextDropdown({ title, text }: TextDropdownProps) {
                   {...props}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline decoration-1 underline-offset-4"
+                  className="underline decoration-1 underline-offset-4 text-[#45381d]"
                 >
                   {props.children}
                 </a>

@@ -13,7 +13,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: Request) {
-  
   try {
     const rawBody = await req.text();
     const sig = req.headers.get("stripe-signature") as string;
@@ -31,11 +30,17 @@ export async function POST(req: Request) {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
 
-      const sessionWithItems = await stripe.checkout.sessions.retrieve(session.id, {
-        expand: ["line_items.data.price.product", "line_items"],
-      });
+      const sessionWithItems = await stripe.checkout.sessions.retrieve(
+        session.id,
+        {
+          expand: ["line_items.data.price.product", "line_items"],
+        },
+      );
 
-      console.log("Webhook - full session with items:", JSON.stringify(sessionWithItems, null, 2));
+      console.log(
+        "Webhook - full session with items:",
+        JSON.stringify(sessionWithItems, null, 2),
+      );
 
       const lineItems = sessionWithItems.line_items?.data || [];
 

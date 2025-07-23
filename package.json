@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^7.0.0",
+    "@tailwindcss/typography": "^0.5.16",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "gsap": "^3.12.5",
@@ -20,7 +21,8 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.3",
     "remark-gfm": "^4.0.0",
-    "stripe": "^18.0.0"
+    "stripe": "^18.0.0",
+    "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

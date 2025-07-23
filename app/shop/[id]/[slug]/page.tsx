@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -39,39 +39,39 @@ export default function ProductPage({
 }) {
   const imageScrollRef = useRef<HTMLDivElement>(null);
 
-useEffect(() => {
-  const handleWheel = (e: WheelEvent) => {
-    const imageScroll = imageScrollRef.current;
-    if (!imageScroll) return;
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      const imageScroll = imageScrollRef.current;
+      if (!imageScroll) return;
 
-    const scrollingDown = e.deltaY > 0;
-    const scrollingUp = e.deltaY < 0;
+      const scrollingDown = e.deltaY > 0;
+      const scrollingUp = e.deltaY < 0;
 
-    const imageAtBottom =
-      imageScroll.scrollTop + imageScroll.clientHeight >= imageScroll.scrollHeight;
-    const imageAtTop = imageScroll.scrollTop <= 0;
+      const imageAtBottom =
+        imageScroll.scrollTop + imageScroll.clientHeight >=
+        imageScroll.scrollHeight;
+      const imageAtTop = imageScroll.scrollTop <= 0;
 
-    const pageScrolledToBottom =
-      window.innerHeight + window.scrollY >= document.body.offsetHeight - 1;
+      const pageScrolledToBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 1;
 
-    const pageScrolledToTop = window.scrollY <= 0;
+      const pageScrolledToTop = window.scrollY <= 0;
 
-    const shouldScrollImageColumn =
-      (scrollingDown && !imageAtBottom) ||
-      (scrollingUp && pageScrolledToTop && !imageAtTop);
+      const shouldScrollImageColumn =
+        (scrollingDown && !imageAtBottom) ||
+        (scrollingUp && pageScrolledToTop && !imageAtTop);
 
-    if (shouldScrollImageColumn) {
-      e.preventDefault();
-      imageScroll.scrollTop += e.deltaY;
-    }
-  };
+      if (shouldScrollImageColumn) {
+        e.preventDefault();
+        imageScroll.scrollTop += e.deltaY;
+      }
+    };
 
-  window.addEventListener("wheel", handleWheel, { passive: false });
-  return () => {
-    window.removeEventListener("wheel", handleWheel);
-  };
-}, []);
-
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
 
   const [productData, setProductData] = useState<Product | null>(null);
 
@@ -83,14 +83,14 @@ useEffect(() => {
   }, [params]);
 
   if (!productData) {
-  return (
-    <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 xl:pl-[0px] pb-6">
-      <div className="h-[88vh] w-full flex items-center justify-center animate-pulse rounded">
-        <p>pots loading...</p>
+    return (
+      <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 xl:pl-[0px] pb-6">
+        <div className="h-[88vh] w-full flex items-center justify-center animate-pulse rounded">
+          <p>pots loading...</p>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   const {
     title,
@@ -102,12 +102,9 @@ useEffect(() => {
     deliveryDetails,
   } = productData;
 
-  
   return (
-    
     <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 xl:pl-[0px] pb-6">
       <div className="mx-auto sm:py-10 md:py-0 grid grid-cols-1 md:grid-cols-[60%_40%] lg:grid-cols-[60%_50%] xl:grid-cols-[50%_50%] gap-4 lg:gap-10">
-
         {/* Mobile Slider */}
         <div className="block lg:hidden">
           <div className="mb-4">
@@ -162,8 +159,6 @@ useEffect(() => {
           </div>
         </div>
 
-
-
         {/* Product Details */}
         <div className="sticky top-20 max-w-[520px]">
           <span className="text-sm hidden lg:block">
@@ -201,7 +196,9 @@ useEffect(() => {
           )}
           {careInstructions && (
             <>
-              <h2 className="text-lg leading-spacey mb-2 mt-6">Care Instructions</h2>
+              <h2 className="text-lg leading-spacey mb-2 mt-6">
+                Care Instructions
+              </h2>
               <p>{careInstructions}</p>
             </>
           )}

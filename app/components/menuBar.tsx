@@ -44,22 +44,34 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
             className={`pb-8 flex space-x-10 font-bagnard ${isHome ? "text-[var(--background)]" : "text-[var(--foreground)]"}`}
           >
             <li>
-              <Link className="text-xl hover:underline underline-offset-4" href="/shop">
+              <Link
+                className="text-xl hover:underline underline-offset-4"
+                href="/shop"
+              >
                 Shop
               </Link>
             </li>
             <li>
-              <Link className="text-xl hover:underline underline-offset-4" href="/about">
+              <Link
+                className="text-xl hover:underline underline-offset-4"
+                href="/about"
+              >
                 About
               </Link>
             </li>
             <li>
-              <Link className="text-xl hover:underline underline-offset-4" href="/gallery">
+              <Link
+                className="text-xl hover:underline underline-offset-4"
+                href="/gallery"
+              >
                 Gallery
               </Link>
             </li>
             <li>
-              <Link className="text-xl hover:underline underline-offset-4" href="/cart">
+              <Link
+                className="text-xl hover:underline underline-offset-4"
+                href="/cart"
+              >
                 Basket
                 {itemCount > 0 && <span>: {itemCount}</span>}
               </Link>

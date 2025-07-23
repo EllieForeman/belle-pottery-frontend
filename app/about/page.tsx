@@ -1,12 +1,11 @@
 import Image from "next/image";
-import Footer from "../components/footer";
 import {
   ExhibitionsDropdown,
   ListDropdown,
   RichTextDropdown,
-  TextDropdown,
 } from "../components/dropdown";
 import { fetchFromCMS } from "../lib/api";
+import InProgressGallery from "./inprogressGallery";
 const BASE_URL = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 export default async function AboutPage() {
@@ -30,8 +29,8 @@ export default async function AboutPage() {
   const teachingText = aboutInfo.teachingText;
   const stockistsText = aboutInfo.stockistText;
   return (
-<div className="w-full max-w-[1350px] mx-auto px-[7%] md:px-6 pb-10">
-  <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-24 w-full mb-8 sm:mb-12">
+    <div className="w-full max-w-[1350px] mx-auto px-[7%] md:px-6 pb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-24 w-full mb-8 sm:mb-12">
         {/* About Section */}
         <div className="order-2 md:order-1 mt-4 sm:mt-0">
           <p className="text-xl whitespace-pre-line mb-10 md:mt-8 md:mb-12 font-bagnard">
@@ -63,14 +62,18 @@ export default async function AboutPage() {
               Contact & Enquiries
             </h2>
             {commissionsText && (
-              <TextDropdown
+              <RichTextDropdown
                 title="Commissions"
                 text={commissionsText}
                 open={false}
               />
             )}
             {teachingText && (
-              <TextDropdown title="Teaching" text={teachingText} open={false} />
+              <RichTextDropdown
+                title="Teaching"
+                text={teachingText}
+                open={false}
+              />
             )}
             {stockistsText && (
               <RichTextDropdown
@@ -105,6 +108,12 @@ export default async function AboutPage() {
           )}
         </div>
       </div>
+
+      {/* In Progress Gallery */}
+      <h2 className="text-2xl mt-8 underline decoration-1 mb-16 underline-offset-4">
+        Progress Gallery
+      </h2>
+      <InProgressGallery />
     </div>
   );
 }

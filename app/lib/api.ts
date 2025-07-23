@@ -2,6 +2,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 export async function fetchFromCMS(endpoint: string, query = "") {
   const url = `${BASE_URL}/${endpoint}?populate=*${query ? `&${query}` : ""}`;
+  console.log("url", url);
 
   try {
     const res = await fetch(url, {});

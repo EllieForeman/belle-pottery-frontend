@@ -46,9 +46,7 @@ export default function CartPage() {
                     />
                   </div>
 
-                  <div className={`text-xl`}>
-                    {item.title}
-                  </div>
+                  <div className={`text-xl`}>{item.title}</div>
 
                   <div
                     className={`text-xl flex flex-col justify-start sm:items-end`}
@@ -66,9 +64,7 @@ export default function CartPage() {
           </ul>
           <div className="max-w-[600px] pt-6 mt-6 flex justify-between">
             <span className={`text-xl`}>Subtotal</span>
-            <span className={`text-xl`}>
-              £{total.toFixed(2)}
-            </span>
+            <span className={`text-xl`}>£{total.toFixed(2)}</span>
           </div>
           <div className="pt-8 max-w-[600px] flex justify-center md:justify-end">
             <CheckoutButton />
