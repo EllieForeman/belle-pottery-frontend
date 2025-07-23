@@ -16,7 +16,7 @@ export default function Footer() {
 
       <div className="relative max-w-[1450px] mx-auto flex flex-col md:flex-row justify-between items-start">
         {/* Newsletter Signup Section */}
-        <div className="w-full md:w-1/2 pl-6">
+        <div className="w-full md:w-1/2 md:pl-6">
           <h2 className="text-2xl mb-4 font-bagnard">
             Sign up to my newsletter
           </h2>
