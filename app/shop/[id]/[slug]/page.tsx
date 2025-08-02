@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 import { fetchFromCMS } from "@/app/lib/api";
 import AddToCartButton from "@/app/components/addToCartButton";
 import CheckoutButton from "@/app/components/checkoutButton";
 import { MobileImageSlider } from "@/app/components/mobileImageSlider";
+import ImageScrollColumn from "./imageScrollColumn";
+import { useEffect, useRef, useState } from "react";
 
 type Product = {
   id: number;
@@ -52,9 +52,6 @@ export default function ProductPage({
         imageScroll.scrollHeight;
       const imageAtTop = imageScroll.scrollTop <= 0;
 
-      const pageScrolledToBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 1;
-
       const pageScrolledToTop = window.scrollY <= 0;
 
       const shouldScrollImageColumn =
@@ -74,6 +71,8 @@ export default function ProductPage({
   }, []);
 
   const [productData, setProductData] = useState<Product | null>(null);
+
+  console.log('productData', productData);
 
   useEffect(() => {
     params.then(async ({ id }) => {
@@ -122,42 +121,11 @@ export default function ProductPage({
           />
         </div>
 
-        <div
-          ref={imageScrollRef}
-          className="relative hidden lg:block h-[88vh] overflow-y-scroll"
-        >
-          <div className="flex flex-col gap-4">
-            {/* Main image – intentionally shorter */}
-            {productMainImage && (
-              <div className="w-full relative max-h-[80vh] overflow-hidden">
-                <Image
-                  src={productMainImage.url}
-                  alt={title}
-                  width={800}
-                  height={800}
-                  className="w-full h-auto"
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  priority
-                />
-              </div>
-            )}
-
-            {/* Additional images – full natural aspect ratio */}
-            {productImages?.map((img, index) => (
-              <div key={index} className="w-full relative">
-                <Image
-                  src={img.url}
-                  alt={`Product Image ${index + 1}`}
-                  width={800}
-                  height={800}
-                  className="w-full h-auto"
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+       <ImageScrollColumn
+        title={title}
+        productMainImage={productMainImage}
+        productImages={productImages}
+      />
 
         {/* Product Details */}
         <div className="sticky top-20 max-w-[520px]">
