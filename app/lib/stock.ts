@@ -1,13 +1,12 @@
 import { fetchFromCMS } from "./api";
 
 export async function reduceProductStock(
-  productId: number,
+  documentId: string,
   currentStock: number,
 ) {
   const updatedStock = currentStock - 1;
-
   const res = await fetch(
-    `${process.env.STRAPI_API_URL}/api/sale-items/${productId}`,
+    `${process.env.STRAPI_URL}/api/sale-items/${documentId}`,
     {
       method: "PUT",
       headers: {

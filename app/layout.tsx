@@ -27,10 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sourceSans.variable} antialiased`}>
-      <body className="font-sans">
+      <body className="font-sans min-h-screen flex flex-col">
         <CartProvider>
           <MenuBarWrapper />
-          {children}
+          
+          <main className="flex-1">
+            {children}
+          </main>
+
           <Footer />
           <SpeedInsights />
           <Analytics />

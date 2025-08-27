@@ -16,7 +16,6 @@ export async function POST(req: Request) {
           `filters[id][$eq]=${item.id}`,
         );
         const cmsProduct = res?.data?.[0];
-        console.log("cmsProduct", cmsProduct);
         if (!cmsProduct) {
           throw new Error(`Product ${item.id} no longer available`);
         }
@@ -29,6 +28,7 @@ export async function POST(req: Request) {
               images: item.image ? [item.image] : [],
               metadata: {
                 productId: cmsProduct.id.toString(),
+                documentId: cmsProduct.documentId
               },
             },
             unit_amount: cmsProduct.price * 100,

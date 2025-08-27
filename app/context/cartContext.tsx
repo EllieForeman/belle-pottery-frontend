@@ -25,22 +25,44 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const CART_KEY = "cart";
+const CART_TIMESTAMP_KEY = "cartTimestamp";
+const CART_EXPIRY_WEEKS = 3;
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
+  // Load cart on first render with expiry check
   useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
+    const storedCart = localStorage.getItem(CART_KEY);
+    const storedTimestamp = localStorage.getItem(CART_TIMESTAMP_KEY);
+
+    if (storedCart && storedTimestamp) {
+      const now = Date.now();
+      const savedTime = parseInt(storedTimestamp, 10);
+      const weeksOld = (now - savedTime) / (1000 * 60 * 60 * 24 * 7);
+
+      if (weeksOld < CART_EXPIRY_WEEKS) {
+        try {
+          setCart(JSON.parse(storedCart));
+        } catch (e) {
+          console.warn("Failed to parse stored cart JSON:", e);
+          setCart([]);
+        }
+      } else {
+        // Expired cart – clear storage
+        localStorage.removeItem(CART_KEY);
+        localStorage.removeItem(CART_TIMESTAMP_KEY);
+      }
     }
   }, []);
 
-  // Sync cart to localStorage whenever it changes
+  // Sync cart to localStorage on change + update timestamp
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    localStorage.setItem(CART_TIMESTAMP_KEY, Date.now().toString());
   }, [cart]);
 
-  // Add item (or increase quantity)
   const addToCart = (item: CartItem) => {
     setCart((prev) => {
       const existing = prev.find((i) => i.id === item.id);
@@ -53,14 +75,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // Remove item by ID
   const removeFromCart = (id: string) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // Clear all items
   const clearCart = () => {
     setCart([]);
+    localStorage.removeItem(CART_KEY);
+    localStorage.removeItem(CART_TIMESTAMP_KEY);
   };
 
   return (

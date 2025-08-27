@@ -72,8 +72,6 @@ export default function ProductPage({
 
   const [productData, setProductData] = useState<Product | null>(null);
 
-  console.log('productData', productData);
-
   useEffect(() => {
     params.then(async ({ id }) => {
       const data = await getProductById(id);

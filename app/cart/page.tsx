@@ -2,24 +2,56 @@
 
 import Image from "next/image";
 import { useCart } from "../context/cartContext";
-import { Lusitana } from "next/font/google";
 import CheckoutButton from "../components/checkoutButton";
-
-// const lusitana = Lusitana({
-//   weight: "400",
-//   subsets: ["latin"],
-//   display: "swap",
-// });
+import { useEffect, useState } from "react";
+import { fetchFromCMS } from "../lib/api";
 
 export default function CartPage() {
+
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const { cart, removeFromCart } = useCart();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  
+  useEffect(() => {
+    if (cart.length === 0) return;
+
+    const validateCartItems = async () => {
+      for (let item of cart) {
+        try {
+          const res = await fetchFromCMS(
+            "sale-items",
+            `filters[id][$eq]=${item.id}`
+          );
+          const product = res?.data?.[0];
+
+          if (!product || product.stock < 1) {
+            removeFromCart(item.id);
+            setErrorMessage(`${item.title} is no longer available and was removed from your cart.`);
+          }
+        } catch (err) {
+          console.error("Failed to validate cart item:", item.id, err);
+        }
+      }
+    };
+
+    validateCartItems();
+  }, [cart, removeFromCart, setErrorMessage]);
 
   return (
     <div className="p-10 w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
       <h1 className={`text-2xl pb-6`}>Shopping Cart</h1>
-      {cart.length === 0 ? (
+      {errorMessage && (
+        <div className="bg-[rgba(69,56,29,0.1)] text-[rgba(69,56,29,1)] border border-[rgba(69,56,29,0.3)] p-3 mb-6 rounded-sm">
+          {errorMessage}
+        </div>
+      )}
+      {!hasMounted ? null : cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <>

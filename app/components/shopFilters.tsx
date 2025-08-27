@@ -75,9 +75,18 @@ export default function FilterControls({ products }: { products: any[] }) {
                     alt={product.title || "Product Image"}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover rounded-sm transition-transform duration-300"
+                    className={`object-cover rounded-sm transition-transform duration-300 ${product.stock < 1 ? "opacity-100" : ""}`}
                   />
+
+                  {/* Hover overlay */}
                   <div className="absolute inset-0 bg-[rgba(69,56,29,0)] group-hover:bg-[rgba(69,56,29,0.2)] transition duration-300 rounded-sm" />
+
+                  {/* Out of stock overlay */}
+                  {product.stock < 1 && (
+                    <div className="absolute bottom-0 left-0 right-0 h-10 bg-[rgba(69,56,29,0.8)] flex items-center justify-center rounded-t-sm z-10">
+                      <span className="text-white text-lg font-semibold">Out of stock</span>
+                    </div>
+                  )}
                 </div>
 
                 <h3 className="mt-4 text-lg font-semibold">
