@@ -104,7 +104,7 @@ export default function ProductPage({
 
   return (
     <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 xl:pl-[0px] pb-6">
-      <div className="mx-auto sm:py-10 md:py-0 grid grid-cols-1 md:grid-cols-[60%_40%] lg:grid-cols-[60%_40%] xl:grid-cols-[45%_55%] gap-4 lg:gap-10">
+      <div className="mx-auto sm:py-10 md:py-0 grid grid-cols-1 md:grid-cols-[60%_40%] lg:grid-cols-[55%_45%] xl:grid-cols-[43%_57%] gap-4 lg:gap-10">
         {/* Mobile Slider */}
         <div className="block lg:hidden">
           <div className="mb-4">
@@ -144,7 +144,7 @@ export default function ProductPage({
             {itemDescription || "No description available."}
           </p>
 
-          <form className="mt-8 mb-12" onSubmit={(e) => e.preventDefault()} >
+          <form className="mt-8 mb-8" onSubmit={(e) => e.preventDefault()} >
             <AddToCartButton
               product={{
                 id: productData.id,

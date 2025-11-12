@@ -32,8 +32,8 @@ export default async function AboutPage() {
     <div className="w-full max-w-[1350px] mx-auto px-[7%] md:px-6 pb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-[4%] sm:gap-24 w-full mb-8 sm:mb-12">
         {/* About Section */}
-        <div className="order-2 md:order-1 mt-4 sm:mt-0">
-          <p className="text-xl whitespace-pre-line mb-10 md:mt-8 md:mb-12 font-bagnard">
+        <div className="order-2 md:order-1 mt-4">
+          <p className="text-xl whitespace-pre-line mt-12 mb-10 md:mt-8 md:mb-12 font-bagnard">
             {bioBoldHeadline}
           </p>
           <p className="mt-4 leading-spacey whitespace-pre-line">
@@ -42,7 +42,7 @@ export default async function AboutPage() {
         </div>
 
         {/* Photo */}
-        <div className="order-1 md:order-2 relative w-full h-full md:mt-8">
+        <div className="order-1 md:order-2 relative w-full md:mt-8 aspect-[3/4] md:aspect-auto">
           <Image
             priority             
             fetchPriority="high"
@@ -58,7 +58,7 @@ export default async function AboutPage() {
       </div>
 
       {/* Dropdown and Photo Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full py-8 md:py-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full py-8 md:py-16">
         {(commissionsText || teachingText || stockistsText) && (
           <div>
             <h2 className="text-2xl sm:mt-20 md:mt-0 underline decoration-1 mb-4 underline-offset-4">
@@ -111,11 +111,6 @@ export default async function AboutPage() {
           )}
         </div>
       </div>
-
-      {/* In Progress Gallery */}
-      <h2 className="text-2xl mt-8 underline decoration-1 mb-16 underline-offset-4">
-        Progress Gallery
-      </h2>
       <InProgressGallery />
     </div>
   );

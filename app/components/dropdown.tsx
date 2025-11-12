@@ -6,6 +6,7 @@ import { useState } from "react";
 interface ListItem {
   title: string;
   location?: string;
+  place?: string;
   dateFrom?: string;
   dateTo?: string;
 }
@@ -41,6 +42,7 @@ interface TextDropdownProps {
 
 export function ListDropdown({ title, items }: ListDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  console.log('items', items);
   return (
     <details
       className="group border-b border-black py-5 w-full"
@@ -56,7 +58,8 @@ export function ListDropdown({ title, items }: ListDropdownProps) {
           {items.map((item, index) => (
             <li className="p-1" key={index}>
               {item.title.trim()}
-              {item.location ? `, ${item.location.trim()} ` : ""}
+              {item.location ? `, ${item.location.trim()}, ` : ""} 
+              {item.place ? `, ${item.place.trim()}, ` : ""}
               {" " + item.dateFrom}
               {item.dateTo ? ` - ${item.dateTo}` : ""}
             </li>

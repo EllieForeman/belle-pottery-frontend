@@ -23,8 +23,6 @@ export default function Footer() {
           </h2>
           <p className="text-[15px] mb-4">
             Sign up with your email to receive occasional news and updates
-            <br />
-            (maximum 12 a year).
           </p>
           <NewsletterForm />
         </div>

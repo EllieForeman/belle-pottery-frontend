@@ -52,7 +52,7 @@ export default function ImageScrollColumn({
     >
       <div className="flex flex-col gap-4">
         {productMainImage && (
-          <div className="w-full relative max-h-[90vh] overflow-hidden">
+          <div className="w-full relative overflow-hidden">
             <Image
               src={productMainImage.url}
               alt={title}
