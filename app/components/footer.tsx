@@ -22,7 +22,7 @@ export default function Footer() {
             Sign up to my newsletter
           </h2>
           <p className="text-[15px] mb-4">
-            Sign up with your email to receive occasional news and updates
+            Sign up with your email to receive occasional news and updates.
           </p>
           <NewsletterForm />
         </div>

@@ -46,7 +46,7 @@ export default function CartPage() {
 
   return (
     <div className="p-10 w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 pb-10">
-      <h1 className={`text-2xl pb-6`}>Shopping Cart</h1>
+      <h1 className={`text-2xl pb-6`}>Shopping Basket</h1>
       {errorMessage && (
         <div className="bg-[rgba(69,56,29,0.1)] text-[rgba(69,56,29,1)] border border-[rgba(69,56,29,0.3)] p-3 mb-6 rounded-sm">
           {errorMessage}
@@ -54,8 +54,8 @@ export default function CartPage() {
       )}
       {!hasMounted ? null : cart.length === 0 ? (
         <div className="pb-64"> 
-         <p>Your cart is currently empty.</p>
-         <p className="pt-4">Check out the <Link className="underline-offset-2 underline pb-2 hover:font-bold" href="../shop">shop here</Link></p>
+         <p>Your basket is currently empty.</p>
+         <p className="pt-4">Browse the shop items <Link className="underline-offset-2 underline pb-2 hover:font-bold" href="../shop">here</Link></p>
         </div>
       ) : (
         <>

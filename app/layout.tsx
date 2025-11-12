@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "./context/cartContext";
-import Footer from "./components/footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { Source_Sans_3 } from "next/font/google";
 import MenuBarWrapper from "./components/menuBarWrapper";
+import ShowFooter from "./components/showFooter";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
@@ -35,7 +35,8 @@ export default function RootLayout({
             {children}
           </main>
 
-          <Footer />
+          <ShowFooter />
+
           <SpeedInsights />
           <Analytics />
         </CartProvider>

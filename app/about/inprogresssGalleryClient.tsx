@@ -18,7 +18,7 @@ export default function InProgressGalleryClient({ images }: { images: any[] }) {
   }));
 
   return (
-    <div className="w-full sm:w-[95%] max-w-[1800px] pl-0 sm:px-2 pb-10">
+    <div className="w-full sm:w-[95%] max-w-[1800px] pl-0 sm:px-2 py-8 pb-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 justify-start">
         {images.map((image: any, i: number) => (
           <div

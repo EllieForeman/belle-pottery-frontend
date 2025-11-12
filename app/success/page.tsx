@@ -33,13 +33,10 @@ export default async function SuccessPage({
       {status === "complete" && (
         <>
           <h2 className="text-2xl mb-4 font-bagnard flex justify-center">
-            Thank you for your order!
+            Thank you for your purchase!
           </h2>
           <p className="mt-4 text-lg flex justify-center">
-            I will get it in the post ASAP
-          </p>
-          <p className="mt-4 text-lg flex justify-center">
-            A confirmation email will be sent to {customerEmail}
+            A confirmation of your order will be sent to the email address you provided.
           </p>
           <div className="mt-4 text-lg flex justify-center gap-x-2">
             <p>If you have any questions please reach out to </p>
@@ -50,6 +47,9 @@ export default async function SuccessPage({
               hello@belleproffitt.com
             </a>
           </div>
+          <p className="mt-4 text-lg flex justify-center">
+            All my best, Belle X
+          </p>
           {profileImage && (
             <div className="flex justify-center mt-8">
               <Image
