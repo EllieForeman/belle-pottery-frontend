@@ -5,6 +5,7 @@ import { useCart } from "../context/cartContext";
 import CheckoutButton from "../components/checkoutButton";
 import { useEffect, useState } from "react";
 import { fetchFromCMS } from "../lib/api";
+import Link from "next/link";
 
 export default function CartPage() {
 
@@ -52,7 +53,10 @@ export default function CartPage() {
         </div>
       )}
       {!hasMounted ? null : cart.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <div className="pb-64"> 
+         <p>Your cart is currently empty.</p>
+         <p className="pt-4">Check out the <Link className="underline-offset-2 underline pb-2 hover:font-bold" href="../shop">shop here</Link></p>
+        </div>
       ) : (
         <>
           <ul className="max-w-[600px]">

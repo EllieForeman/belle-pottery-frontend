@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import NewsletterForm from "../forms/newsletter";
 
 export default function Footer() {
   return (
@@ -20,34 +21,12 @@ export default function Footer() {
           <h2 className="text-2xl mb-4 font-bagnard">
             Sign up to my newsletter
           </h2>
-          <p className="text-[15px]  mb-6">
+          <p className="text-[15px] mb-4">
             Sign up with your email to receive occasional news and updates
             <br />
             (maximum 12 a year).
           </p>
-          <form className="flex flex-col space-y-4 w-80">
-            <input
-              type="text"
-              placeholder="First Name"
-              className="bg-transparent rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] border-2 border-[rgba(151,131,120,1)] focus:border-[rgba(121,101,90,1)] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)]"
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="bg-transparent rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] border-2 border-[rgba(151,131,120,1)] focus:border-[rgba(121,101,90,1)] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)]"
-            />
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="bg-transparent rounded-md px-4 py-2 text-[#45381d] placeholder-[#45381d] border-2 border-[rgba(151,131,120,1)] focus:border-[rgba(121,101,90,1)] focus:outline-none focus:ring-2 focus:ring-[rgba(151,131,120,1)]"
-            />
-            <button
-              type="submit"
-              className="w-40 px-6 py-2 rounded-lg bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)] hover:underline hover:underline-offset-4"
-            >
-              Sign up
-            </button>
-          </form>
+          <NewsletterForm />
         </div>
 
         {/* Links Section */}

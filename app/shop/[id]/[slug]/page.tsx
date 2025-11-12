@@ -101,7 +101,7 @@ export default function ProductPage({
 
   return (
     <div className="w-full sm:w-[95%] max-w-[1800px] mx-auto px-4 sm:px-2 xl:pl-[0px] pb-6">
-      <div className="mx-auto sm:py-10 md:py-0 grid grid-cols-1 md:grid-cols-[60%_40%] lg:grid-cols-[60%_50%] xl:grid-cols-[50%_50%] gap-4 lg:gap-10">
+      <div className="mx-auto sm:py-10 md:py-0 grid grid-cols-1 md:grid-cols-[60%_40%] lg:grid-cols-[60%_40%] xl:grid-cols-[45%_55%] gap-4 lg:gap-10">
         {/* Mobile Slider */}
         <div className="block lg:hidden">
           <div className="mb-4">
@@ -135,13 +135,13 @@ export default function ProductPage({
           </span>
 
           <h1 className="text-xl sm:mt-5 mb-6">{title}</h1>
-          <p className="text-xl mt-2 mb-4 sm:mb-12">£{price}</p>
+          <p className="text-xl ">£{price}</p>
 
           <p className="sm:mt-4 text-md">
             {itemDescription || "No description available."}
           </p>
 
-          <form className="mt-12 mb-12">
+          <form className="mt-8 mb-12">
             <AddToCartButton
               product={{
                 id: productData.id,
@@ -151,13 +151,12 @@ export default function ProductPage({
                 stock: productData.stock,
               }}
             />
-            <CheckoutButton />
           </form>
 
           {deliveryDetails && (
             <>
               <h2 className="text-lg leading-spacey mb-2">Shipping</h2>
-              <p>{deliveryDetails}</p>
+              <p className="text-sm">{deliveryDetails}</p>
             </>
           )}
           {careInstructions && (
@@ -165,7 +164,7 @@ export default function ProductPage({
               <h2 className="text-lg leading-spacey mb-2 mt-6">
                 Care Instructions
               </h2>
-              <p>{careInstructions}</p>
+              <p className="text-sm">{careInstructions}</p>
             </>
           )}
         </div>

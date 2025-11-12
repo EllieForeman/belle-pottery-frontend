@@ -44,12 +44,15 @@ export default async function AboutPage() {
         {/* Photo */}
         <div className="order-1 md:order-2 relative w-full h-full md:mt-8">
           <Image
+            priority             
+            fetchPriority="high"
             src={profileImage}
             alt="Profile Photo"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-top"
-            priority
+            placeholder="blur"
+            blurDataURL={profileImage}
           />
         </div>
       </div>

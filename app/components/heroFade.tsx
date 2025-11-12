@@ -34,6 +34,10 @@ export default function HeroFade({ imageUrl }: { imageUrl: string }) {
             fill
             className="object-cover object-[50%_40%] transition-opacity opacity-100 duration-[3s]"
             onLoad={imageTransition}
+            placeholder="blur"
+            blurDataURL={
+              imageUrl 
+            }
           />
         </div>
       )}

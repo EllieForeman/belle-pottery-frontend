@@ -4,7 +4,7 @@
 
 :root {
   --background: #eeece8;
-  --foreground: #45381d;
+  --foreground: rgb(69, 56, 29);
 }
 
 @font-face {
