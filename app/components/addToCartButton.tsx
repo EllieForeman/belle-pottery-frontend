@@ -10,6 +10,7 @@ type Props = {
     price: number;
     image?: string;
     stock: number;
+    type: string;
   };
 };
 
@@ -32,6 +33,7 @@ export default function AddToCartButton({ product }: Props) {
       title: product.title,
       price: product.price,
       image: product.image,
+      type: product.type,
       quantity: 1,
     });
     setAdded(true);

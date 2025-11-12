@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { fetchFromCMS } from "@/app/lib/api";
 import AddToCartButton from "@/app/components/addToCartButton";
-import CheckoutButton from "@/app/components/checkoutButton";
 import { MobileImageSlider } from "@/app/components/mobileImageSlider";
 import ImageScrollColumn from "./imageScrollColumn";
 import { useEffect, useRef, useState } from "react";
@@ -19,18 +17,23 @@ type Product = {
   careInstructions?: string;
   deliveryDetails?: string;
   stock: number;
-  filter: string;
+  filters?: { id: number; filter: string }[];
 };
 
 export const dynamic = "force-dynamic";
+
+const deriveType = (filters?: { filter: string }[]) => {
+  const names = (filters ?? []).map(f => f.filter).filter(Boolean);
+  if (names.length === 0) return "unknown";
+  const brooch = names.find(n => /brooch/i.test(n));
+  return (brooch ?? names[0]).toLowerCase();
+};
 
 async function getProductById(id: string): Promise<Product | null> {
   const data = await fetchFromCMS("sale-items", `filters[id][$eq]=${id}`);
   if (!data || !data.data || data.data.length === 0) return null;
   return data.data[0];
 }
-
-type Params = { id: string; slug: string };
 
 export default function ProductPage({
   params,
@@ -149,6 +152,7 @@ export default function ProductPage({
                 price: productData.price,
                 image: productData.productMainImage?.url,
                 stock: productData.stock,
+                type: deriveType(productData.filters),
               }}
             />
           </form>

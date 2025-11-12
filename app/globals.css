@@ -4,13 +4,13 @@
 
 :root {
   --background: #eeece8;
-  --foreground: rgb(69, 56, 29);
+  --foreground: #45381d;
 }
 
 @font-face {
   font-family: "Bagnard";
-  src: url("/fonts/Bagnard.otf") format("opentype");
-  font-weight: normal;
+  src: url("/fonts/Bagnard.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
 }
 
