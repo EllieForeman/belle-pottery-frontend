@@ -144,7 +144,7 @@ export default function ProductPage({
             {itemDescription || "No description available."}
           </p>
 
-          <form className="mt-8 mb-12">
+          <form className="mt-8 mb-12" onSubmit={(e) => e.preventDefault()} >
             <AddToCartButton
               product={{
                 id: productData.id,

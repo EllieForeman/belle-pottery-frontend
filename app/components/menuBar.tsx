@@ -7,7 +7,8 @@ import { useCart } from "../context/cartContext";
 const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { cart } = useCart();
-  const itemCount = cart.length;
+  let itemCounter = 0;
+  cart.map((item) => itemCounter += item.quantity);
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -73,7 +74,7 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
                 href="/cart"
               >
                 Basket
-                {itemCount > 0 && <span>: {itemCount}</span>}
+                {itemCounter > 0 && <span>: {itemCounter}</span>}
               </Link>
             </li>
           </ul>
@@ -120,7 +121,7 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
                   onClick={() => setIsOpen(false)}
                 >
                   Basket
-                  {itemCount > 0 && <span>: {itemCount}</span>}
+                  {itemCounter > 0 && <span>: {itemCounter}</span>}
                 </Link>
               </li>
             </ul>
