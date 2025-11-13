@@ -14,7 +14,6 @@ type Props = {
 export function MobileImageSlider({
   productMainImage,
   productImages,
-  title,
 }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -36,7 +35,7 @@ export function MobileImageSlider({
       {/* Carousel */}
       <div
         ref={sliderRef}
-        className="keen-slider h-[75vh] overflow-hidden rounded-sm"
+        className="keen-slider overflow-hidden rounded-sm"
       >
         {images.map((img, idx) => (
           <div
@@ -48,7 +47,7 @@ export function MobileImageSlider({
               alt={`Product Image ${idx + 1}`}
               width={700}
               height={600}
-              className="object-cover w-full h-[75vh] block"
+              className="object-contain h-auto w-auto mx-auto block"
             />
           </div>
         ))}

@@ -38,3 +38,7 @@ h1 {
 .image-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
+
+::selection {
+  background-color: rgba(69,56,29,0.3);
+}
