@@ -61,9 +61,6 @@ export default async function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-36 w-full py-8 md:py-16">
         {(commissionsText || teachingText || stockistsText) && (
           <div>
-            <h2 className="text-2xl underline decoration-1 mb-8 md:mb-4 underline-offset-4">
-              Contact & Enquiries
-            </h2>
             {commissionsText && (
               <RichTextDropdown
                 title="Commissions"
@@ -88,14 +85,6 @@ export default async function AboutPage() {
           </div>
         )}
         <div>
-          {(education?.length > 0 ||
-            exhibitions?.length > 0 ||
-            collections?.length > 0 ||
-            teaching?.length > 0) && (
-            <h2 className="text-2xl underline mb-4 underline-offset-4 decoration-1 mt-12 md:mt-0">
-              CV
-            </h2>
-          )}
           {education?.length > 0 && (
             <ListDropdown title="Education & Training" items={education} />
           )}

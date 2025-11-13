@@ -42,6 +42,13 @@ interface TextDropdownProps {
 
 export function ListDropdown({ title, items }: ListDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+   const sortedItems = [...items].sort((a, b) => {
+    const endA = parseInt(a.dateTo ?? a.dateFrom ?? "0", 10);
+    const endB = parseInt(b.dateTo ?? b.dateFrom ?? "0", 10);
+    return endB - endA; 
+  });
+
   console.log('items', items);
   return (
     <details
@@ -55,7 +62,7 @@ export function ListDropdown({ title, items }: ListDropdownProps) {
       </summary>
       <div className="mt-4  text-sm pl-4">
         <ul className="text-base list-disc mt-4 leading-spacey">
-          {items.map((item, index) => (
+          {sortedItems.map((item, index) => (
             <li className="p-1" key={index}>
               {item.title.trim()}
               {item.location ? `, ${item.location.trim()}, ` : ""} 

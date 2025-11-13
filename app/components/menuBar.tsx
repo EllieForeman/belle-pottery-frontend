@@ -65,7 +65,7 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
                 className="text-xl hover:underline underline-offset-4"
                 href="/gallery"
               >
-                Gallery
+                Selected Works
               </Link>
             </li>
             <li>
@@ -111,7 +111,7 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
                   href="/gallery"
                   onClick={() => setIsOpen(false)}
                 >
-                  Gallery
+                  Selected Works
                 </Link>
               </li>
               <li>

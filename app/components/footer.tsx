@@ -46,7 +46,7 @@ export default function Footer() {
             href="/gallery"
             className="text-[1.1rem] block underline-offset-2 underline pb-2 hover:font-bold"
           >
-            Gallery
+            Selected Works
           </Link>
           <a
             href="https://www.instagram.com/belle.pots/"

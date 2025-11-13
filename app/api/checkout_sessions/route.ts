@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
     const standardOption: ShippingOption = {
       shipping_rate_data: {
-        display_name: "Standard (2–4 business days)",
+        display_name: "Standard",
         type: "fixed_amount",
         fixed_amount: { amount: 450, currency: "gbp" },
         delivery_estimate: {
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
 
     const freeBroochOption: ShippingOption = {
       shipping_rate_data: {
-        display_name: "Free Shipping (2–4 business days)",
+        display_name: "Free Shipping",
         type: "fixed_amount",
         fixed_amount: { amount: 0, currency: "gbp" },
         delivery_estimate: {
