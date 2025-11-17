@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { fetchFromCMS } from "@/app/lib/api"; // Adjust path if needed
 import HeroFade from "./components/heroFade";
+import { fetchFromCMS } from "./lib/api";
 
 export default async function Home() {
   const res = await fetchFromCMS("large-home-image");
