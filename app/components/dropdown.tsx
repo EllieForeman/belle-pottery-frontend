@@ -1,6 +1,5 @@
 "use client";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { useState } from "react";
 
 interface ListItem {
@@ -167,7 +166,6 @@ export function RichTextDropdown({ title, text }: TextDropdownProps) {
       <div className="mt-4 leading-spacey prose text-[#45381d] [&_strong]:text-[#45381d] [&_b]:text-[#45381d]">
         {isOpen && (
           <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
             components={{
               a: ({ node, ...props }) => (
                 <a
