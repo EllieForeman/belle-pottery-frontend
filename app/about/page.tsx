@@ -6,7 +6,6 @@ import {
 } from "../components/dropdown";
 import { fetchFromCMS } from "../lib/api";
 import InProgressGallery from "./inprogressGallery";
-const BASE_URL = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 export default async function AboutPage() {
   const aboutData = await fetchFromCMS("about");

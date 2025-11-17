@@ -5,9 +5,10 @@ import HeroFade from "./components/heroFade";
 export default async function Home() {
   const res = await fetchFromCMS("large-home-image");
   const imageUrl = res?.data?.homeImage.url || null;
+
   return (
     <div className="relative min-h-screen flex flex-col">
-      <HeroFade imageUrl={imageUrl} />
+      {imageUrl && <HeroFade imageUrl={imageUrl} />}
       {imageUrl && (
         <div className="absolute inset-0 -z-10">
           <Image
