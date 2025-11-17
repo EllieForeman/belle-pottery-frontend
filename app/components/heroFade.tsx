@@ -12,7 +12,7 @@ export default function HeroFade({ imageUrl }: { imageUrl: string }) {
       setFading(true);
       const remove = setTimeout(() => setVisible(false), 1000); 
       return () => clearTimeout(remove);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(startFade);
   }, []);
@@ -21,7 +21,7 @@ export default function HeroFade({ imageUrl }: { imageUrl: string }) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 transition-opacity duration-[1000ms] ${
+      className={`fixed inset-0 z-50 bg-[var(--foreground)] transition-opacity duration-[2000ms] ${
         fading ? "opacity-0" : "opacity-100"
       }`}
     >
