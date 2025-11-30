@@ -68,7 +68,7 @@ export async function POST(req: Request) {
     };
 
     const shipping_options: ShippingOption[] = isOnlyBrooch ? [freeBroochOption] : [standardOption];
-    const expiresAt = Math.floor(Date.now() / 1000) + 60;
+    const expiresAt = Math.floor(Date.now() / 1000) + 10 * 60; 
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
