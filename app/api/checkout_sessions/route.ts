@@ -83,6 +83,14 @@ export async function POST(req: Request) {
       success_url: `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart`,
       expires_at: expiresAt, 
+      metadata: {
+        cart: JSON.stringify(
+          cart.map((item: any) => ({
+            id: item.id,
+            quantity: 1, 
+          }))
+        ),
+      },
     });
 
     return NextResponse.json({ url: session.url });
