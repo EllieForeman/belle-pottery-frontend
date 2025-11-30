@@ -19,6 +19,45 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    if (
+      event.type === "checkout.session.completed" ||
+      event.type === "checkout.session.expired"
+    ) {
+      const session = event.data.object as Stripe.Checkout.Session;
+      const cart = session.metadata?.cart
+        ? JSON.parse(session.metadata.cart)
+        : [];
+
+      if (event.type === "checkout.session.completed") {
+        console.log("Checkout completed for session", session.id);
+      }
+
+      if (event.type === "checkout.session.expired") {
+        console.log("Checkout expired for session", session.id);
+
+        for (const item of cart) {
+          try {
+            await fetch(
+              `${process.env.STRAPI_URL}/api/sale-items/unreserve`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+                },
+                body: JSON.stringify({
+                  id: item.id,
+                  quantity: item.quantity ?? 1,
+                }),
+              }
+            );
+          } catch (err) {
+            console.error("Failed to unreserve item", item.id, err);
+          }
+        }
+      }
+    }
+
     return NextResponse.json({ received: true });
   } catch (error) {
     console.error("Webhook error", error);

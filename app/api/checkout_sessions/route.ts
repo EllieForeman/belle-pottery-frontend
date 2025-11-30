@@ -68,6 +68,7 @@ export async function POST(req: Request) {
     };
 
     const shipping_options: ShippingOption[] = isOnlyBrooch ? [freeBroochOption] : [standardOption];
+    const expiresAt = Math.floor(Date.now() / 1000) + 10 * 60;
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -81,6 +82,7 @@ export async function POST(req: Request) {
       phone_number_collection: { enabled: true },
       success_url: `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart`,
+      expires_at: expiresAt, 
     });
 
     return NextResponse.json({ url: session.url });
