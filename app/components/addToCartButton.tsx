@@ -23,7 +23,7 @@ export default function AddToCartButton({ product }: Props) {
 
   const inCartQuantity = itemInCart?.quantity || 0;
   const availableStock = product.stock;
-
+  console.log('product', product);
   const outOfStock = availableStock === 0;
   const isMaxedOut = inCartQuantity >= availableStock;
 

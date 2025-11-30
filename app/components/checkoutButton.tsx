@@ -104,6 +104,9 @@ const handleCheckout = async () => {
 
   return (
     <div>
+      <p className="mt-2 text-sm text-[var(--background)]">
+        Once you start checkout, your items are reserved for up to 10 minutes.
+      </p>
       {checkoutError && (
         <div className="bg-[rgba(69,56,29,0.1)] text-[rgba(69,56,29,1)] border border-[rgba(69,56,29,0.3)] p-3 mb-3 rounded-sm">
           {checkoutError}
