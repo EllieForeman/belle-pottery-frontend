@@ -6,6 +6,7 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: NextRequest) {
   try {
+    console.log("🔔 Webhook route invoked"); 
     const rawBody = Buffer.from(await req.arrayBuffer());
     const sig = req.headers.get("stripe-signature") as string;
 
@@ -14,10 +15,13 @@ export async function POST(req: NextRequest) {
     try {
       event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
     } catch (err: any) {
+      console.error("Webhook signature error:", err?.message);
       return new NextResponse(`Webhook Error: ${err.message}`, {
         status: 400,
       });
     }
+
+    console.log(" Webhook event type:", event.type);
 
     if (
       event.type === "checkout.session.completed" ||
