@@ -42,7 +42,6 @@ interface TextDropdownProps {
 export function ListDropdown({ title, items }: ListDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log('items', items);
   return (
     <details
       className="group border-b border-black py-5 w-full"

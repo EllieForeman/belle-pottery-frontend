@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+const endpointSecret = process.env.STRIPE_WEBHOOK_CHECKOUT_EXPIRED!;
 
 export async function POST(req: NextRequest) {
   try {
-    console.log("🔔 Webhook route invoked"); 
     const rawBody = Buffer.from(await req.arrayBuffer());
     const sig = req.headers.get("stripe-signature") as string;
 
@@ -21,8 +20,6 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    console.log(" Webhook event type:", event.type);
-
     if (
       event.type === "checkout.session.completed" ||
       event.type === "checkout.session.expired"
@@ -31,14 +28,8 @@ export async function POST(req: NextRequest) {
       const cart = session.metadata?.cart
         ? JSON.parse(session.metadata.cart)
         : [];
-
-      if (event.type === "checkout.session.completed") {
-        console.log("Checkout completed for session", session.id);
-      }
-
+        
       if (event.type === "checkout.session.expired") {
-        console.log("Checkout expired for session", session.id);
-
         for (const item of cart) {
           try {
             await fetch(
