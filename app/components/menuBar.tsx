@@ -24,7 +24,11 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
     <button
       className={`
         absolute right-0 mr-6 mt-2 md:hidden block focus:outline-none z-[9999]
-        ${isOpen ? "text-[var(--foreground)]" : "text-[var(--background)]"}
+        ${
+          isHome
+            ? (isOpen ? "text-[var(--foreground)]" : "text-[var(--background)]")
+            : "text-[var(--foreground)]"
+        }
       `}
       onClick={handleClick}
     >
@@ -32,6 +36,7 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
         {isOpen ? "close" : "menu"}
       </span>
     </button>
+
       <nav className="flex justify-between items-center mt-2">
         <div>
           <Link href="/">
