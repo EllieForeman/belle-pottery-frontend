@@ -5,35 +5,38 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function FilterControls({ products }: { products: any[] }) {
-  const getKind = (product: any): "other" | "chair" | "pin" | "button" => {
-    const raw =
-      (product.type ||
-        product.category ||
-        "").toString().toLowerCase();
-
-    const source = raw || (product.title || "").toLowerCase();
-
-    if (source.includes("chair")) return "chair";
-    if (source.includes("pin")) return "pin";
-    if (source.includes("button")) return "button";
-    return "other";
-  };
-
   const sortProducts = (items: any[]) => {
-    const PRIORITY: Record<"other" | "chair" | "pin" | "button", number> = {
-      other: 0,   // all normal items first
-      chair: 1,   // then chairs
-      pin: 2,     // then pins
-      button: 3,  // then buttons
+    const getKind = (product: any): "other" | "chair" | "pin" | "button" => {
+      const source =
+        (product.type || product.category || product.title || "")
+          .toLowerCase();
+
+      if (source.includes("chair")) return "chair";
+      if (source.includes("pin")) return "pin";
+      if (source.includes("button")) return "button";
+      return "other";
+    };
+
+    const PRIORITY = {
+      other: 0,
+      chair: 1,
+      pin: 2,
+      button: 3,
+    };
+
+    const extractNumber = (title: string): number => {
+      const match = title.match(/#?(\d+)/);
+      return match ? parseInt(match[1], 10) : Infinity;
     };
 
     return [...items].sort((a, b) => {
       const aOut = a.stock <= 0;
       const bOut = b.stock <= 0;
 
-      // Out-of-stock items always at the very bottom
+      // Out of stock always at bottom
       if (aOut !== bOut) return aOut ? 1 : -1;
 
+      // In-stock items → sort by type group
       const aKind = getKind(a);
       const bKind = getKind(b);
 
@@ -44,9 +47,15 @@ export default function FilterControls({ products }: { products: any[] }) {
         return aPriority - bPriority;
       }
 
+      const aNum = extractNumber(a.title || "");
+      const bNum = extractNumber(b.title || "");
+
+      if (aNum !== bNum) return aNum - bNum;
+
       return (a.title || "").localeCompare(b.title || "");
     });
   };
+
 
   const allFilters = products
     .flatMap(
