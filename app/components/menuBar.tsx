@@ -21,14 +21,17 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
           : "bg-background text-foreground"
       }`}
     >
-      <button
-        className="z-index: 9999 absolute right-0 mr-6 mt-2 md:hidden block focus:outline-none z-20"
-        onClick={handleClick}
-      >
-        <span className="text-lg font-bagnard material-icons">
-          {isOpen ? "close" : "menu"}
-        </span>
-      </button>
+    <button
+      className={`
+        absolute right-0 mr-6 mt-2 md:hidden block focus:outline-none z-[9999]
+        ${isOpen ? "text-[var(--foreground)]" : "text-[var(--background)]"}
+      `}
+      onClick={handleClick}
+    >
+      <span className="text-lg font-bagnard material-icons">
+        {isOpen ? "close" : "menu"}
+      </span>
+    </button>
       <nav className="flex justify-between items-center mt-2">
         <div>
           <Link href="/">
