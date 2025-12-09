@@ -9,7 +9,9 @@ export async function POST(req: Request) {
     const body = await req.json();
     const cart = body.cart;
 
-    const isOnlyBrooch = cart.length > 0 && cart.every((item: { type: string; }) => item.type === "brooch");
+    const isOnlyBrooch = cart.length > 0 &&  cart.every((item: { type: string }) =>
+      item.type === "pin" || item.type === "button"
+    );
 
 
     const line_items = await Promise.all(
@@ -47,7 +49,7 @@ export async function POST(req: Request) {
       shipping_rate_data: {
         display_name: "Standard",
         type: "fixed_amount",
-        fixed_amount: { amount: 450, currency: "gbp" },
+        fixed_amount: { amount: 500, currency: "gbp" },
         delivery_estimate: {
           minimum: { unit: "business_day", value: 2 },
           maximum: { unit: "business_day", value: 4 },

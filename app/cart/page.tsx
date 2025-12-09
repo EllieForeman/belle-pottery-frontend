@@ -102,7 +102,7 @@ export default function CartPage() {
             <span className={`text-xl`}>Subtotal</span>
             <span className={`text-xl`}>£{total.toFixed(2)}</span>
           </div>
-          <div className="italic">Shipping to be calculated at checkout</div>
+          <div className="italic">Shipping will be added at checkout. It will be £5 unless your order contains only pins and/or buttons, and then shipping is free!</div>
 
           <div className="pt-8 max-w-[600px] flex justify-center md:justify-end">
             <CheckoutButton />

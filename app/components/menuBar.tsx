@@ -82,12 +82,12 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
 
         {/* Full-Screen Mobile Menu */}
         <div
-            className={`fixed inset-0 z-10 flex flex-col justify-center items-center space-y-6 md:hidden
-              bg-white transition-opacity duration-500 ease-in-out
-              ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-            onClick={() => setIsOpen(false)}
-          >
-            <ul className="font-bagnard text-center space-y-12 group">
+          className={`fixed inset-0 z-10 flex flex-col justify-center items-center space-y-6 md:hidden
+            bg-white text-[var(--foreground)] transition-opacity duration-500 ease-in-out
+            ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+          onClick={() => setIsOpen(false)}
+        >
+          <ul className="font-bagnard text-center space-y-12 group">
               <li>
                 <Link
                   className="text-4xl transition-opacity duration-300 group-hover:opacity-50 hover:!opacity-100"
