@@ -5,6 +5,49 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function FilterControls({ products }: { products: any[] }) {
+  const getKind = (product: any): "other" | "chair" | "pin" | "button" => {
+    const raw =
+      (product.type ||
+        product.category ||
+        "").toString().toLowerCase();
+
+    const source = raw || (product.title || "").toLowerCase();
+
+    if (source.includes("chair")) return "chair";
+    if (source.includes("pin")) return "pin";
+    if (source.includes("button")) return "button";
+    return "other";
+  };
+
+  const sortProducts = (items: any[]) => {
+    const PRIORITY: Record<"other" | "chair" | "pin" | "button", number> = {
+      other: 0,   // all normal items first
+      chair: 1,   // then chairs
+      pin: 2,     // then pins
+      button: 3,  // then buttons
+    };
+
+    return [...items].sort((a, b) => {
+      const aOut = a.stock <= 0;
+      const bOut = b.stock <= 0;
+
+      // Out-of-stock items always at the very bottom
+      if (aOut !== bOut) return aOut ? 1 : -1;
+
+      const aKind = getKind(a);
+      const bKind = getKind(b);
+
+      const aPriority = PRIORITY[aKind];
+      const bPriority = PRIORITY[bKind];
+
+      if (aPriority !== bPriority) {
+        return aPriority - bPriority;
+      }
+
+      return (a.title || "").localeCompare(b.title || "");
+    });
+  };
+
   const allFilters = products
     .flatMap(
       (product) =>
@@ -22,6 +65,8 @@ export default function FilterControls({ products }: { products: any[] }) {
         ),
       )
     : products;
+
+  const ordered = sortProducts(filtered);
 
   return (
     <>
@@ -55,7 +100,7 @@ export default function FilterControls({ products }: { products: any[] }) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-        {filtered.map((product) => {
+        {ordered.map((product) => {
           const mainImage = product.productMainImage?.url || "/placeholder.png";
           const formattedTitle = product.title
             .toLowerCase()
@@ -75,11 +120,11 @@ export default function FilterControls({ products }: { products: any[] }) {
                     alt={product.title || "Product Image"}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className={`object-cover rounded-sm transition-transform duration-300 ${product.stock < 1 ? "opacity-100" : ""}`}
+                    className={`object-cover rounded-sm transition-transform duration-300 ${
+                      product.stock < 1 ? "opacity-100" : ""
+                    }`}
                     placeholder="blur"
-                    blurDataURL={
-                      mainImage
-                    }
+                    blurDataURL={mainImage}
                   />
 
                   {/* Hover overlay */}
@@ -88,7 +133,9 @@ export default function FilterControls({ products }: { products: any[] }) {
                   {/* Out of stock overlay */}
                   {product.stock < 1 && (
                     <div className="absolute bottom-0 left-0 right-0 h-10 bg-[rgba(69,56,29,0.8)] flex items-center justify-center rounded-t-sm z-10">
-                      <span className="text-white text-lg font-semibold">Out of stock</span>
+                      <span className="text-white text-lg font-semibold">
+                        Out of stock
+                      </span>
                     </div>
                   )}
                 </div>
