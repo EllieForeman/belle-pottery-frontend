@@ -1,6 +1,11 @@
 import { fetchFromCMS } from "../lib/api";
 import FilterControls from "../components/shopFilters";
 
+export const metadata = {
+  title: "Shop | Handmade Pottery & Ceramics",
+  description: "Browse handcrafted ceramic mugs, jars, vaes, pins, buttons, bowls, and more.",
+};
+
 export default async function ShopPage() {
   const shopData = await fetchFromCMS("sale-items");
   return (

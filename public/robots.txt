@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.belleproffitt.com
+
+# Sitemaps
+Sitemap: https://www.belleproffitt.com/sitemap.xml

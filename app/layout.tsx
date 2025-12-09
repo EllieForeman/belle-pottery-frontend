@@ -16,11 +16,8 @@ const sourceSans = Source_Sans_3({
 
 export const metadata: Metadata = {
   title: "Isabelle Proffitt Pottery",
-   icons: {
-    icon: "../public/Favicon-2.png",
-  },
   description:
-    "Website for Belle Proffitt's pottery, including home, about, her work and online shop",
+    "Isabelle Proffitt makes wood-fired, salt-glazed ceramics driven by process, material curiosity, and playful making. Shop included bird pins, buttons, mugs, jars, mostly wood-fired, salt-glazed ceramics by Isabelle Proffitt.",
 };
 
 export default function RootLayout({

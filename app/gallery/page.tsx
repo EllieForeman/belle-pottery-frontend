@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { fetchFromCMS } from "../lib/api";
 
+export const metadata = {
+  title: "Gallery | Handmade Pottery & Ceramics",
+  description: "Photos of Belle Proffitt's salt glazed and wood fired ceramics",
+};
+
+
 const galleryImages = await fetchFromCMS("image-galley");
 
 export default function GalleryPage() {
