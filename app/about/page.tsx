@@ -15,7 +15,8 @@ export default async function AboutPage() {
   }
 
   const aboutInfo = aboutData.data;
-  const profileImage = `${aboutInfo.profilePhoto.formats.medium.url}`;
+  const profileImage = `${aboutInfo.profilePhoto.url}`;
+
   const bioBoldHeadline =
     aboutInfo?.bioBoldHeadline || "No headline available.";
   const bioDescription =
@@ -50,8 +51,6 @@ export default async function AboutPage() {
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-top"
-            placeholder="blur"
-            blurDataURL={profileImage}
           />
         </div>
       </div>
