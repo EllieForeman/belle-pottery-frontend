@@ -8,9 +8,8 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const cart = body.cart;
-
     const isOnlyBrooch = cart.length > 0 &&  cart.every((item: { type: string }) =>
-      item.type === "pin" || item.type === "button"
+      item.type === "pins" || item.type === "buttons"
     );
 
 
