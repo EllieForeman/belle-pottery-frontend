@@ -66,7 +66,7 @@ export default function CartPage() {
                 className="relative first:border-t-[1.5px] border-b-[1.5px] border-[var(--foreground)] py-2 sm:py-8"
               >
                 <button
-                  className="font-bold absolute top-4 right-2 text-sm text-[var(--foreground)] w-6 h-6 flex items-center justify-center border-[1.5px] border-[var(--foreground)]"
+                  className="font-bold absolute top-4 right-2 text-sm text-[var(--foreground)] w-6 h-6 flex items-center justify-center border-[1.5px] border-[var(--foreground)] hover:font-extrabold hover:border-2"
                   onClick={() => removeFromCart(item.id)}
                 >
                   X
@@ -102,7 +102,7 @@ export default function CartPage() {
             <span className={`text-xl`}>Subtotal</span>
             <span className={`text-xl`}>£{total.toFixed(2)}</span>
           </div>
-          <div className="italic">Shipping will be added at checkout. It will be £5 unless your order contains only pins and/or buttons, and then shipping is free!</div>
+          <div className="italic py-4">Shipping will be added at checkout.<br/>It will be £5 unless your order contains only pins and/or buttons, and then shipping is free!</div>
 
           <div className="pt-8 max-w-[600px] flex justify-center md:justify-end">
             <CheckoutButton />
