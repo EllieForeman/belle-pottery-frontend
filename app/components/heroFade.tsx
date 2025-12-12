@@ -21,7 +21,7 @@ export default function HeroFade({ imageUrl }: { imageUrl: string }) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 bg-[var(--foreground)] transition-opacity duration-[2000ms] ${
+      className={`hidden md:block fixed inset-0 z-50 bg-[var(--foreground)] transition-opacity duration-[2000ms] ${
         fading ? "opacity-0" : "opacity-100"
       }`}
     >
