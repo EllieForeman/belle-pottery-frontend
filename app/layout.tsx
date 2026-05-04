@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://use.typekit.net/dxf1yme.css" />
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "./context/cartContext";

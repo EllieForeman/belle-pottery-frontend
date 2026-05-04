@@ -47,7 +47,7 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
               width={200}
               height={80}
               priority
-              className={`w-[300px] md:w-[250px] lg:w-[450px] xl:w-[550px] ${isHome ? "brightness-0 invert" : ""}`}
+              className={`w-[230px] md:w-[250px] lg:w-[450px] xl:w-[550px] ${isHome ? "brightness-0 invert" : ""}`}
             />
           </Link>
         </div>
