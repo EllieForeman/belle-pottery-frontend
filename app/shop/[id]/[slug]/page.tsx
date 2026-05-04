@@ -159,13 +159,13 @@ export default function ProductPage({
 
           {deliveryDetails && (
             <>
-              <h2 className="text-lg leading-spacey mb-2">Shipping</h2>
+              <h2 className="text-lg leading-relaxed mb-2">Shipping</h2>
               <p className="text-sm">{deliveryDetails}</p>
             </>
           )}
           {careInstructions && (
             <>
-              <h2 className="text-lg leading-spacey mb-2 mt-6">
+              <h2 className="text-lg leading-relaxed mb-2 mt-6">
                 Care Instructions
               </h2>
               <p className="text-sm">{careInstructions}</p>

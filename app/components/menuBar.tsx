@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "../context/cartContext";
+import Image from "next/image";
 
 const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,11 +41,14 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
       <nav className="flex justify-between items-center mt-2">
         <div>
           <Link href="/">
-            <h1 className="text-xl md:text-xl lg:text-4xl text-left">
-              Isabelle Proffitt
-              <br />
-              Pottery
-            </h1>
+            <Image
+              src="/NavbarTitle.png"
+              alt="Isabelle Proffitt Pottery"
+              width={200}
+              height={80}
+              priority
+              className={`w-[300px] md:w-[250px] lg:w-[450px] xl:w-[550px] ${isHome ? "brightness-0 invert" : ""}`}
+            />
           </Link>
         </div>
         {/*  DESKTOP MENU */}
@@ -70,7 +74,7 @@ const MenuBar: React.FC<{ isHome?: boolean }> = ({ isHome = false }) => {
             </li>
             <li>
               <Link
-                className="text-xl hover:underline underline-offset-4"
+                className="text-xl hover:underline underline-offset-4 whitespace-nowrap"
                 href="/gallery"
               >
                 Selected Works

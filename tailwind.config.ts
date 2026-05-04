@@ -11,7 +11,7 @@ export default {
       fontFamily: {
         bagnard: ["Bagnard", "sans-serif"],
         sans: [
-          "Lucida Grande",
+          "linotype-sabon",
           "var(--source-sans)",
           "Helvetica Neue",
           "Arial",

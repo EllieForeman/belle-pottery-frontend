@@ -33,10 +33,10 @@ export default async function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-[4%] sm:gap-0 w-full">
         {/* About Section */}
         <div className="order-2 md:order-1 mt-4">
-          <p className="text-xl whitespace-pre-line mt-4 mb-10 md:mt-8 md:mb-12 font-bagnard">
+          <p className="text-xl whitespace-pre-line mt-4 mb-10 md:mt-8 md:mb-12 font-bagnard text-color-[#AD6819]">
             {bioBoldHeadline}
           </p>
-          <p className="mt-4 leading-spacey whitespace-pre-line">
+          <p className="mt-4 leading-relaxed whitespace-pre-line">
             {bioDescription}
           </p>
         </div>

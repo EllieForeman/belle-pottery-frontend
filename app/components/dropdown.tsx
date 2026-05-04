@@ -53,7 +53,7 @@ export function ListDropdown({ title, items }: ListDropdownProps) {
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
       <div className="mt-4  text-sm pl-4">
-        <ul className="text-base list-disc mt-4 leading-spacey">
+        <ul className="text-base list-disc mt-4 leading-relaxed">
           {items.map((item, index) => (
             <li className="p-1" key={index}>
               {item.title.trim()}
@@ -106,7 +106,7 @@ export function ExhibitionsDropdown({
               .map((year) => (
                 <div key={year}>
                   <h4 className="text-lg mt-6">{year}</h4>
-                  <ul className="text-base list-disc pl-4 leading-spacey">
+                  <ul className="text-base list-disc pl-4 leading-relaxed">
                     {groupedExhibitions[year].map((item) => (
                       <li key={item.id}>
                         {item.title}, {item.place}
@@ -118,7 +118,7 @@ export function ExhibitionsDropdown({
           <h4 className="text-lg mt-6 mb-3 underline underline-offset-4">
             Collections
           </h4>
-          <ul className="text-base leading-spacey">
+          <ul className="text-base leading-relaxed">
             {collections?.map((item, index) => (
               <li key={index}>
                 {item.title}, {item.place}
@@ -144,7 +144,7 @@ export function TextDropdown({ title, text, open }: TextDropdownProps) {
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
-      <div>{isOpen && <p className="mt-4 mb-4 leading-spacey">{text}</p>}</div>
+      <div>{isOpen && <p className="mt-4 mb-4 leading-relaxed">{text}</p>}</div>
     </details>
   );
 }
@@ -162,7 +162,7 @@ export function RichTextDropdown({ title, text }: TextDropdownProps) {
         <span className="text-xl">{title}</span>
         <span className="text-lg font-bold">{isOpen ? "−" : "+"}</span>
       </summary>
-      <div className="mt-4 leading-spacey prose text-[#45381d] [&_strong]:text-[#45381d] [&_b]:text-[#45381d]">
+      <div className="mt-4 leading-relaxed prose text-[#45381d] [&_strong]:text-[#45381d] [&_b]:text-[#45381d]">
         {isOpen && (
           <ReactMarkdown
             components={{
