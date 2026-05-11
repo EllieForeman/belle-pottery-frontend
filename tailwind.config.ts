@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        bagnard: ["Bagnard", "sans-serif"],
+        bagnard: ["broadsheet", "sans-serif"],
         sans: [
           "linotype-sabon",
           "var(--source-sans)",

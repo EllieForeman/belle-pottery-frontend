@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://use.typekit.net/dxf1yme.css" />
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "./context/cartContext";
@@ -45,6 +44,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sourceSans.variable} antialiased`}>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/dxf1yme.css" />
+      </head>
       <body className="font-sans min-h-screen flex flex-col">
         <CartProvider>
           <MenuBarWrapper />
